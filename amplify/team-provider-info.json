@@ -10,6 +10,16 @@
       "StackName": "amplify-finchainwebapp-dev-f065c",
       "StackId": "arn:aws:cloudformation:us-east-1:845066651024:stack/amplify-finchainwebapp-dev-f065c/349fe1b0-f694-11ee-a82f-0affc319aef3",
       "AmplifyAppId": "doxeiruimiiuh"
+    },
+    "categories": {
+      "auth": {
+        "finchainwebappf739e5e9": {
+          "userPoolId": "us-east-1_6disTWxvp",
+          "userPoolName": "finchain-cloud-app",
+          "webClientId": "6hu9l4m2d0ddvg4kvo2s28dsj3",
+          "nativeClientId": "6hu9l4m2d0ddvg4kvo2s28dsj3"
+        }
+      }
     }
   }
 }

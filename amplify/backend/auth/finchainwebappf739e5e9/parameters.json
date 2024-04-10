@@ -1,0 +1,21 @@
+{
+  "authSelections": "userPoolOnly",
+  "resourceName": "finchainwebappf739e5e9",
+  "serviceType": "imported",
+  "region": "us-east-1",
+  "requiredAttributes": [
+    "email"
+  ],
+  "passwordPolicyMinLength": 8,
+  "passwordPolicyCharacters": [
+    "Requires Lowercase",
+    "Requires Uppercase",
+    "Requires Numbers",
+    "Requires Symbols"
+  ],
+  "mfaConfiguration": "OFF",
+  "autoVerifiedAttributes": [
+    "email"
+  ],
+  "mfaTypes": []
+}
