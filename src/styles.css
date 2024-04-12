@@ -3,6 +3,10 @@
 @import '@aws-amplify/ui/dist/styles.css';
 /** These fonts are added in only temporarily until Angular has it's own theming system */
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html {
     font-family: var(--amplify-fonts-default-static);
   }
@@ -28,3 +32,14 @@ html {
     align-items: center;
   }
 
+  .amplify-button--primary {
+    background: var(--amplify-colors-black);
+  }
+.amplify-button--primary:hover {
+  background: linear-gradient(
+    to right,
+    var(--amplify-colors-neutral-60),
+    var(--amplify-colors-neutral-20)
+  );
+    
+}
