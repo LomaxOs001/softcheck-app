@@ -1,0 +1,12 @@
+.finchain-container {
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    background: linear-gradient(to bottom, #feffff, #e9f0ef);
+    height: 100vh;
+
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 1em;
+} 

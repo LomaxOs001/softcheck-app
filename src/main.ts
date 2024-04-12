@@ -1,6 +1,6 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/appConfig/app.config';
-import { AppComponent } from './app/app.component';
+import { AppComponent } from './app/home/app.component';
 import { Amplify }from 'aws-amplify';
 import awsconfig from './aws-exports';
 
