@@ -2,14 +2,14 @@
     <!-- Upload section -->
     <div class="flex justify-between items-center mb-8">
         <div class="flex-1 mr-4">
-            <input type="file" class="hidden" id="file-upload" />
-            <label for="file-upload"
-                class="block w-full bg-white py-2 px-4 border-2 border-gray-300 border-dashed rounded cursor-pointer text-center">
-                Select file to upload
-            </label>
+            <input type="file"
+                class="w-full bg-white p-2 border rounded-lg text-sm text-gray-700 border-dashed border-gray-300 cursor-pointer"
+                id="file-upload" (change)="selectFile($event)" />
+
         </div>
         <button
-            class="py-2 px-4 bg-black text-white rounded shadow-md transition ease-in duration-300 transform hover:scale-110 focus:outline-none ">
+            class="py-2 px-4 bg-black text-white rounded shadow-md transition ease-in duration-300 transform hover:scale-110 focus:outline-none "
+            [disabled]="!file" (click)="onUpload()">
             Upload
         </button>
     </div>

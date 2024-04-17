@@ -1,4 +1,5 @@
 {
+  "api": {},
   "auth": {
     "finchainwebappf739e5e9": {
       "customAuth": false,
@@ -8,6 +9,7 @@
       "serviceType": "imported"
     }
   },
+  "function": {},
   "parameters": {
     "AMPLIFY_auth_finchainwebappf739e5e9_nativeClientId": {
       "usedBy": [
