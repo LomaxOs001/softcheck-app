@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterModule} from '@angular/router';
-import { HttpResponse } from '@angular/common/http';
 import { DataprocessingService } from '../services/dataprocessing.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MyLocalStorage } from '../services/myLocalStorage'
