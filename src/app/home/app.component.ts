@@ -23,7 +23,9 @@ Amplify.configure(awsconfig);
 export class AppComponent implements OnInit {
   title = 'finchain-web-app';
 
-  constructor(private router: Router, private auth: AuthenticatorService, private session: MyLocalStorage, private dp: DataprocessingService) {}
+  constructor(private router: Router, private auth: AuthenticatorService, private session: MyLocalStorage, private dp: DataprocessingService) {
+    
+  }
 
   ngOnInit() {
     Hub.listen('auth', (data) => {

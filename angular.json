@@ -61,13 +61,13 @@
                 "scripts": true,
                 "styles": {
                   "minify": true,
-                  "inlineCritical": false 
+                  "inlineCritical": false
                   },
                 "fonts": false
               }
             },
             "development": {
-              "optimization": true,
+              "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
             }
