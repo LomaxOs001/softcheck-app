@@ -1,9 +1,7 @@
 import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { environment } from '../appConfig/environment';
-import { Observable } from 'rxjs';
-import { environment } from '../../environment/environment';
+import { environment } from '../environment/environment';
 
 @Injectable({
   providedIn: 'root'
