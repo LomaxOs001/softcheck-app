@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterModule} from '@angular/router';
-import { HttpResponse } from '@angular/common/http';
 import { DataprocessingService } from '../services/dataprocessing.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MyLocalStorage } from '../services/myLocalStorage'
@@ -38,7 +37,7 @@ export class DataManagementComponent {
 
   onUpload(): void {
     if (this.file) {
-      this.dataProcessingService.uploadDocuments(this.file, this.token).subscribe({
+      this.dataProcessingService.uploadDocument(this.file, this.token).subscribe({
         next: data => {
             this.docInfos = this.dataProcessingService.getAllDocuments(this.token);
             console.log('File is completely uploaded!');

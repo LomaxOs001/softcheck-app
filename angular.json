@@ -29,15 +29,34 @@
               "node_modules/@aws-amplify/ui-angular/theme.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies":[
+              "lodash",
+              "qrcode",
+              "bowser",
+              "lodash/kebabCase.js",
+              "lodash/pickBy.js",
+              "lodash/merge.js",
+              "style-dictionary/lib/utils/deepExtend.js",
+              "style-dictionary/lib/utils/flattenProperties.js",
+              "style-dictionary/lib/utils/references/usesReference.js",
+              "@aws-crypto/sha256-browser",
+              "@aws-crypto/sha256-js",
+              "@aws-crypto/sha1-browser",
+              "@aws-crypto/crc32c",
+              "@aws-crypto/crc32",
+              "fast-xml-parser"
+
+
+            ]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -45,7 +64,15 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                  },
+                "fonts": false
+              }
             },
             "development": {
               "optimization": false,
