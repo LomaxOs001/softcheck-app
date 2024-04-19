@@ -7,28 +7,38 @@ import { catchError, finalize } from 'rxjs/operators';
 import { Amplify } from 'aws-amplify';
 import awsconfig from '../../aws-exports';
 import { CognitoIdentityClient } from "@aws-sdk/client-cognito-identity"
-import { fromCognitoIdentityPool } from "@aws-sdk/credential-provider-cognito-identity";
+import { fromCognitoIdentityPool  } from "@aws-sdk/credential-provider-cognito-identity";
+import { MyLocalStorage } from '../services/myLocalStorage';
 
 
 Amplify.configure(awsconfig);
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataprocessingService {
 
-  private client: S3Client;
+  private s3Client: S3Client;
   private apiURL = environment.finchainApp.END_POINT_URL;
   private authzUserName = new BehaviorSubject<string>('');
-
+  private userToken: any = null;
+  private logindata: any = null;
   
 
   constructor(private http: HttpClient) {
 
-    this.client = new S3Client({
+    this.userToken = new MyLocalStorage();
+    this.logindata = { [environment.finchainApp.COGNITO_IDP_URL]: this.userToken.getToken() };
+
+    this.s3Client = new S3Client({
+
       region: environment.finchainApp.REGION,
+
       credentials: fromCognitoIdentityPool({
         client: new CognitoIdentityClient({ region: environment.finchainApp.REGION }),
+        logins: this.logindata,
         identityPoolId: environment.finchainApp.IDENTITY_POOL_ID,
       })
     });
@@ -59,7 +69,7 @@ export class DataprocessingService {
       Body: file
     });
 
-    return this.client.send(command)
+    return this.s3Client.send(command)
       .then(data => {
         console.log('File uploaded to S3:', data);
         this.sendMetadataToAPI(file, key, token);
