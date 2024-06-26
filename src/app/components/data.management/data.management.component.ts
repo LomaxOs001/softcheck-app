@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterModule} from '@angular/router';
-import { DataprocessingService } from '../services/dataprocessing.service';
+import { DataprocessingService } from '../../services/dataprocessing.service';
 import { HttpClientModule } from '@angular/common/http';
-import { MyLocalStorage } from '../services/myLocalStorage'
+import { MyLocalStorage } from '../../services/myLocalStorage'
 import { Observable } from 'rxjs';
 
 @Component({

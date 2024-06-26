@@ -6,22 +6,22 @@ import { Hub } from 'aws-amplify/utils';
 import { DataManagementComponent } from '../data.management/data.management.component';
 import { Router } from '@angular/router';
 import { AuthenticatorService } from '@aws-amplify/ui-angular';
-import { MyLocalStorage } from '../services/myLocalStorage';
+import { MyLocalStorage } from '../../services/myLocalStorage';
 
-import awsconfig from '../../aws-exports';
-import { DataprocessingService } from '../services/dataprocessing.service';
+import awsconfig from '../../../aws-exports';
+import { DataprocessingService } from '../../services/dataprocessing.service';
 
 Amplify.configure(awsconfig);
 
+
 @Component({
-  selector: 'app-root',
+  selector: 'app-auth',
   standalone: true,
   imports: [RouterOutlet, AmplifyAuthenticatorModule, DataManagementComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  templateUrl: './auth.component.html',
+  styleUrl: './auth.component.css'
 })
 export class AppComponent implements OnInit {
-  title = 'finchain-web-app';
 
   constructor(private router: Router, private auth: AuthenticatorService, private session: MyLocalStorage, private dp: DataprocessingService) {
     
@@ -44,5 +44,4 @@ export class AppComponent implements OnInit {
       }
     });
   }
-  }
-  
+}

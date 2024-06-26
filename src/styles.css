@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10..0,100..900&display=swap');
 @import '@aws-amplify/ui/dist/styles.css';
+@import "bootstrap/dist/css/bootstrap.min.css";
 /** These fonts are added in only temporarily until Angular has it's own theming system */
 
 @tailwind base;
