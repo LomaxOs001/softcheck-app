@@ -11,7 +11,7 @@ import { fromCognitoIdentityPool  } from "@aws-sdk/credential-provider-cognito-i
 import { MyLocalStorage } from '../services/myLocalStorage';
 
 
-Amplify.configure(awsconfig);
+//Amplify.configure(awsconfig);
 
 
 
