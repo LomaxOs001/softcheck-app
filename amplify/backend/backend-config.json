@@ -1,1 +1,102 @@
-{}
+{
+  "auth": {
+    "supchainsecure18a96401": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
+  "function": {},
+  "parameters": {
+    "AMPLIFY_auth_supchainsecure18a96401_allowUnauthenticatedIdentities": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "supchainsecure18a96401"
+        }
+      ]
+    },
+    "AMPLIFY_auth_supchainsecure18a96401_authRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "supchainsecure18a96401"
+        }
+      ]
+    },
+    "AMPLIFY_auth_supchainsecure18a96401_authRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "supchainsecure18a96401"
+        }
+      ]
+    },
+    "AMPLIFY_auth_supchainsecure18a96401_identityPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "supchainsecure18a96401"
+        }
+      ]
+    },
+    "AMPLIFY_auth_supchainsecure18a96401_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "supchainsecure18a96401"
+        }
+      ]
+    },
+    "AMPLIFY_auth_supchainsecure18a96401_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "supchainsecure18a96401"
+        }
+      ]
+    },
+    "AMPLIFY_auth_supchainsecure18a96401_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "supchainsecure18a96401"
+        }
+      ]
+    },
+    "AMPLIFY_auth_supchainsecure18a96401_unauthRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "supchainsecure18a96401"
+        }
+      ]
+    },
+    "AMPLIFY_auth_supchainsecure18a96401_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "supchainsecure18a96401"
+        }
+      ]
+    },
+    "AMPLIFY_auth_supchainsecure18a96401_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "supchainsecure18a96401"
+        }
+      ]
+    },
+    "AMPLIFY_auth_supchainsecure18a96401_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "supchainsecure18a96401"
+        }
+      ]
+    }
+  }
+}

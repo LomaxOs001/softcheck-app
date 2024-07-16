@@ -1,11 +1,28 @@
-<div class="finchain-container">
-    <div
-      class="bg-gradient-to-r from-sky-200 to-sky-100 flex items-center justify-between pt-4 items-top drop-shadow-lg mb-10 h-26">
-      <h1 class="text-4xl font-bold ">
-        <span class="text-black">FinChain</span><br><span class="text-3xl drop-shadow-lg">Storage</span>
-      </h1>
-    </div>
-    <amplify-authenticator>
+<div class="flex flex-col p-20 bg-gradient-to-r from-green-200 to-blue-300 h-2/3"> <!--container 1-->
+
+  <div class="flex flex-row space-x-5"><!---div 1--->
+      <div class="flex flex-col flex-1 w-70 md:items-start pt-6"><!---div 1.1--->
+          <app-header class="md:w-1/2 pb-6 mb-12 flex flex-row"></app-header>
+          <div class="md:w-1/2 text-left md:ml-8 mt-8 md:mt-0">
+              <div> <!---sec&Int --->
+                <h2 class="text-8xl font-bold mb-6">
+                  <div>Security</div>
+                  <div class="ps-40 pt-4 text-2xl">&</div>
+                  <div>Integrity</div>
+                </h2>
+              </div>
+          </div>
+      </div>
+      <div class="flex-1 pt-16" ><!---div 1.2--->
+        <img src="../../../assets/images/landing-img2.png" alt="Image" width="600" class="m-auto">
+      </div>
+  </div> 
+</div> <!--/container 1-->
+
+<div class="bg-gradient-to-r from-green-100 to-blue-300 p-20 relative"> <!--container 2--> <span class=" hidden absolute top-0 right-0 h-6 w-8 text-center bg-cyan-100 hover:bg-cyan-950 hover:text-white
+  "><a>X</a></span>
+    
+    <amplify-authenticator [hideSignUp]="true">
       <ng-template
         amplifySlot="authenticated"
         let-user="user"
@@ -24,4 +41,5 @@
         
       </ng-template>
     </amplify-authenticator>
-  </div>
+  </div> <!--/container 2-->
+  <app-footer></app-footer>

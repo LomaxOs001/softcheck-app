@@ -9,7 +9,25 @@
       "UnauthRoleName": "amplify-supchainsecure-dev-d8d49-unauthRole",
       "StackName": "amplify-supchainsecure-dev-d8d49",
       "StackId": "arn:aws:cloudformation:us-east-1:891377160116:stack/amplify-supchainsecure-dev-d8d49/71fedfa0-3d0e-11ef-96e3-0ebdcbb00551",
-      "AmplifyAppId": "d1gth8qi3c9w3f"
+      "AmplifyAppId": "d1gth8qi3c9w3f",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-supchainsecure-dev-d8d49-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "supchainsecure18a96401": {
+          "userPoolId": "us-east-1_qSGQTJJZb",
+          "userPoolName": "supchainsecure_user_pool_01",
+          "webClientId": "adcmmh9r8mlnhap2h2juj3vf4",
+          "nativeClientId": "adcmmh9r8mlnhap2h2juj3vf4",
+          "identityPoolId": "us-east-1:296fbb7f-06c3-483e-a1ab-50cf5ea0e258",
+          "identityPoolName": "supchainsecure_identity_pool_01",
+          "allowUnauthenticatedIdentities": true,
+          "authRoleArn": "arn:aws:iam::891377160116:role/amplify-supchainsecure-dev-d8d49-authRole",
+          "authRoleName": "amplify-supchainsecure-dev-d8d49-authRole",
+          "unauthRoleArn": "arn:aws:iam::891377160116:role/amplify-supchainsecure-dev-d8d49-unauthRole",
+          "unauthRoleName": "amplify-supchainsecure-dev-d8d49-unauthRole"
+        }
+      }
     }
   }
 }
