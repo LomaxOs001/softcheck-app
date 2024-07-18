@@ -2,7 +2,7 @@
 
   <div class="flex flex-row space-x-5"><!---div 1--->
       <div class="flex flex-col flex-1 w-70 md:items-start pt-6"><!---div 1.1--->
-          <app-header class="md:w-1/2 pb-6 mb-12 flex flex-row"></app-header>
+        <app-header class="md:w-1/2 pb-6 mb-12 flex flex-row"></app-header>
           <div class="md:w-1/2 text-left md:ml-8 mt-8 md:mt-0">
               <div> <!---sec&Int --->
                 <h2 class="text-8xl font-bold mb-6">
@@ -22,24 +22,7 @@
 <div class="bg-gradient-to-r from-green-100 to-blue-300 p-20 relative"> <!--container 2--> <span class=" hidden absolute top-0 right-0 h-6 w-8 text-center bg-cyan-100 hover:bg-cyan-950 hover:text-white
   "><a>X</a></span>
     
-    <amplify-authenticator [hideSignUp]="true">
-      <ng-template
-        amplifySlot="authenticated"
-        let-user="user"
-        let-signOut="signOut"
-      >
-  
-      <div id="profile" class="absolute top-0 right-0 p-4 rounded-lg">
-        <div class="flex items-center space-x-2">
-            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="w-8 h-8">
-            <span class="font-semibold text-gray-800">{{ user.username }}</span>
-        </div>
-        <button id="sngout" (click)="signOut()" class="mt-2 px-4 py-2 bg-sky-50 text-black font-medium rounded hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-            Sign Out
-        </button>
-        </div>
-        
-      </ng-template>
+    <amplify-authenticator [hideSignUp]="true" variation="modal">
     </amplify-authenticator>
   </div> <!--/container 2-->
   <app-footer></app-footer>

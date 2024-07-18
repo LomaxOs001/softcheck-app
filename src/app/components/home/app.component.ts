@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
-import { HeaderComponent} from '../../modals/header/header.component';
+import { HeaderComponent} from '../header/header.component';
 import { Amplify } from 'aws-amplify';
 import { Router, RouterLink} from '@angular/router';
 import { MyLocalStorage } from '../../services/myLocalStorage';
 import awsconfig from '../../../aws-exports';
-import { FooterComponent } from "../../modals/footer/footer.component";
+import { FooterComponent } from "../footer/footer.component";
 
 //Amplify.configure(awsconfig);
 

@@ -34,13 +34,17 @@ html {
   }
 
   .amplify-button--primary {
-    background: var(--amplify-colors-black);
+    background: var(--amplify-colors-blue-40);
   }
 .amplify-button--primary:hover {
   background: linear-gradient(
     to right,
-    var(--amplify-colors-neutral-60),
-    var(--amplify-colors-neutral-20)
+    var(--amplify-colors-blue-90),
+    var(--amplify-colors-blue-20)
   );
     
+}
+.amplify-input:focus {
+  border-color: var(--amplify-colors-blue-40);
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
