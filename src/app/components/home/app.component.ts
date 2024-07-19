@@ -38,8 +38,15 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
       
   }
-  onNav(): void {
-    this.router.navigate(['/authentication']);
+  onNavigateToUserPage(typeOfUser: String): void {
+    
+    if (typeOfUser === 'producer') {
+      this.router.navigate(['/producers']);
+    } else if (typeOfUser === 'consumer') {
+      this.router.navigate(['/consumers']);
+    } else {  
+      this.router.navigate(['/']); // Route 0 to secure with Guards.
+    }
   }
   }
   

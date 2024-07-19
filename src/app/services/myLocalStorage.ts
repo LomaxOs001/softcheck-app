@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { fetchAuthSession } from 'aws-amplify/auth';
 
 
-
-const USER_TOKEN = 'userToken';
+const USER_TOKEN = 'authzUserToken';
 
 @Injectable({
   providedIn: 'root'
@@ -15,12 +14,12 @@ export class MyLocalStorage  {
   public setToken(): void {
     fetchAuthSession().then(session => {
 
-      const aToken = session.tokens?.idToken?.toString();
+      const anAuthzToken = session.tokens?.idToken?.toString();
 
-      if (aToken) {
-        window.sessionStorage.setItem(USER_TOKEN, aToken);
+      if (anAuthzToken) {
+        window.sessionStorage.setItem(USER_TOKEN, anAuthzToken);
 
-        console.log("Token is stored: ", aToken);
+        console.log("Token is stored: ", anAuthzToken);
       }
     }).catch(err => {
       console.log("Error with token: ", err);
