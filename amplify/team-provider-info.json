@@ -14,18 +14,18 @@
     },
     "categories": {
       "auth": {
-        "supchainsecure18a96401": {
-          "userPoolId": "us-east-1_qSGQTJJZb",
-          "userPoolName": "supchainsecure_user_pool_01",
-          "webClientId": "adcmmh9r8mlnhap2h2juj3vf4",
-          "nativeClientId": "adcmmh9r8mlnhap2h2juj3vf4",
-          "identityPoolId": "us-east-1:296fbb7f-06c3-483e-a1ab-50cf5ea0e258",
-          "identityPoolName": "supchainsecure_identity_pool_01",
+        "supchainsecure9ec57cd2": {
+          "userPoolId": "us-east-1_6RWWnPWm1",
+          "userPoolName": "softcheck_user_pool01",
+          "webClientId": "1djgt7pv9thh28crk6jrrlrb1e",
+          "nativeClientId": "1eppbn7tq68775ji7d4fimdnov",
+          "identityPoolId": "us-east-1:ddd86bc9-6fd1-4d6d-9ec3-8a5f6c4b888f",
+          "identityPoolName": "softcheck_identity_pool001",
           "allowUnauthenticatedIdentities": true,
-          "authRoleArn": "arn:aws:iam::891377160116:role/amplify-supchainsecure-dev-d8d49-authRole",
-          "authRoleName": "amplify-supchainsecure-dev-d8d49-authRole",
-          "unauthRoleArn": "arn:aws:iam::891377160116:role/amplify-supchainsecure-dev-d8d49-unauthRole",
-          "unauthRoleName": "amplify-supchainsecure-dev-d8d49-unauthRole"
+          "authRoleArn": "arn:aws:iam::891377160116:role/service-role/softcheck_identitypool_iam_role_auth",
+          "authRoleName": "softcheck_identitypool_iam_role_auth",
+          "unauthRoleArn": "arn:aws:iam::891377160116:role/service-role/softcheck_identitypool_iam_role_unauth",
+          "unauthRoleName": "softcheck_identitypool_iam_role_unauth"
         }
       }
     }

@@ -3,7 +3,7 @@ import { Amplify } from 'aws-amplify';
 import awsconfig from '../../../aws-exports';
 import {AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
 
-
+Amplify.configure(awsconfig)
 @Component({
   selector: 'app-consumers',
   standalone: true,
@@ -14,7 +14,7 @@ import {AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
 export class ConsumersComponent {
 
   constructor() {
-    Amplify.configure(awsconfig)
+    
   }
 
 }

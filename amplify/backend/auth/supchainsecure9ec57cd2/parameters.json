@@ -1,10 +1,10 @@
 {
   "authSelections": "identityPoolAndUserPool",
-  "resourceName": "supchainsecure18a96401",
+  "resourceName": "supchainsecure9ec57cd2",
   "serviceType": "imported",
   "region": "us-east-1",
-  "aliasAttributes": [
-    "preferred_username"
+  "usernameAttributes": [
+    "email"
   ],
   "requiredAttributes": [
     "email"
