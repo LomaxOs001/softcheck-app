@@ -9,8 +9,7 @@
       "UnauthRoleName": "amplify-supchainsecure-dev-d8d49-unauthRole",
       "StackName": "amplify-supchainsecure-dev-d8d49",
       "StackId": "arn:aws:cloudformation:us-east-1:891377160116:stack/amplify-supchainsecure-dev-d8d49/71fedfa0-3d0e-11ef-96e3-0ebdcbb00551",
-      "AmplifyAppId": "d1gth8qi3c9w3f",
-      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-supchainsecure-dev-d8d49-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+      "AmplifyAppId": "d1gth8qi3c9w3f"
     },
     "categories": {
       "auth": {

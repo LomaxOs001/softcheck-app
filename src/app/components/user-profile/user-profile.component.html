@@ -3,7 +3,7 @@
     <div id="profile" class="absolute top-0 right-0 p-4 rounded-lg">
         <div class="flex items-center space-x-2">
             <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="w-8 h-8">
-            <span class="font-semibold text-gray-800">{{ authService.user.username }}</span>
+            <span class="font-semibold text-gray-800">{{ authService.user.userId }}</span>
         </div>
         <button id="sngout" (click)="authService.signOut()" class="mt-2 px-4 py-2 bg-sky-50 text-black font-medium rounded hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
             Sign Out
