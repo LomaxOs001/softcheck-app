@@ -1,0 +1,34 @@
+<div class="form-modal border border-black bg-gray-900 max-w-full max-h-full z-1 top-0 left-0 bottom-0 right-0 fixed pt-36 pb-56 flex justify-center">
+    
+    <div class="form-modal-content border border-white w-3/5 p-3 text-white">
+        <div class="flex justify-end mb-1">
+            <span class="material-symbols-outlined form-modal-close" (click)="onCloseAddProductForm()">
+                close
+                </span>
+        </div>
+        
+        <form class="form-horizontal rounded p-8 bg-white flex flex-col space-y-4">
+            <div class="border border-black">
+                <input type="text" name="swproduct" placeholder="Enter product name">
+            </div>
+            <div class="border border-black">
+                <textarea name="description" placeholder="Describe product here..."></textarea>
+            </div>
+            <div class="border border-black">
+                <input type="number" name="price" placeholder="Enter product price">
+            </div>
+            <div class="upload-box p-3 border border-black text-black">
+                <div class="upload-header flex justify-center w-9 h-9 pt-1 rounded-full bg-purple-100">
+                    <span class="material-symbols-outlined text-blue-600">cloud_upload</span>
+                </div>
+                <h3 class="font-semibold mt-3 mb-2">Upload a file</h3>
+                <div class="upload-box-space flex justify-center border-dashed border-2 border-gray-300">
+                    <input type="file" name="file" class="file-input">
+                </div>
+                
+            </div>
+            <button type="submit" class="btn btn-primary">Proceed</button>
+        </form>
+    </div>
+
+</div>

@@ -35,6 +35,7 @@ html {
 
   .amplify-button--primary {
     background: var(--amplify-colors-blue-40);
+    border-radius: 9999px
   }
 .amplify-button--primary:hover {
   background: linear-gradient(
