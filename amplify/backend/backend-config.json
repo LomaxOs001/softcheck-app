@@ -97,6 +97,30 @@
           "resourceName": "supchainsecure9ec57cd2"
         }
       ]
+    },
+    "AMPLIFY_storage_supchainsecure2a07a334_bucketName": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "supchainsecure2a07a334"
+        }
+      ]
+    },
+    "AMPLIFY_storage_supchainsecure2a07a334_region": {
+      "usedBy": [
+        {
+          "category": "storage",
+          "resourceName": "supchainsecure2a07a334"
+        }
+      ]
+    }
+  },
+  "storage": {
+    "supchainsecure2a07a334": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3",
+      "serviceType": "imported"
     }
   }
 }

@@ -15,3 +15,19 @@
     'GRAD' 0,
     'opsz' 24
   }
+ .product-detail-box .product-img {
+    border-radius: 9999px;
+  }
+.product-detail-box .product-img img {
+    border-radius: 9999px;
+    max-width: 3rem;
+    max-height: 3rem;
+  }
+
+.product-detail-box button {
+    background-color: #43a4e6;
+    border-radius: 9999px;
+  }
+.product-detail-box button:hover {
+    background-image: linear-gradient(to right, #245f86, #78cbfc);
+  }

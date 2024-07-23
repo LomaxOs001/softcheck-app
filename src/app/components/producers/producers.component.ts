@@ -7,7 +7,7 @@ import { HeaderComponent } from '../header/header.component';
 import { AddproductComponent } from '../addproduct/addproduct.component';
 import { FooterComponent } from '../footer/footer.component';
 
-Amplify.configure(awsconfig)
+Amplify.configure(awsconfig);
 @Component({
   selector: 'app-producers',
   standalone: true,

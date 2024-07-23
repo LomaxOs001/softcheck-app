@@ -3,20 +3,21 @@
 </div>
 <div class="flex flex-column mt-5 relative border border-black p-20">
     <div class="">
-        <div class=" flex flex-row space-x-9 border border-black ">
-            <div>sdsdsd</div>
-            <div>sdsdsd</div>
-            <div>sdsdsd</div>
-            <div>sdsdsd</div>
-            <div>sdsdsd</div>
-            <button>sdsdsd</button>
-            <button>sdsdsd</button>
+        <div class="product-detail-box flex flex-row justify-around items-center p-2.5 border border-black font-semibold">
+            <div class="product-img border border-black"><img src="../../../assets/images/org0.jpg"></div>
+            <div class="product_name">SoftCheck</div>
+            <div class="product_desc">Description</div>
+            <div class="product_date">22/07/2024</div>
+            <div class="product_state"><span>Pass</span></div>
+            <div class="product_price">€ 20.000</div>
+            <button class="btn btn-primary" >Update</button>
+            <button class="btn btn-primary" >Delete</button>
         </div>
 
         <button class="button absolute bottom-0 right-16 flex items-center bg-cyan-900 text-white px-4 py-2 w-48 h-12 mb-2 rounded-full" (click)="onAddNewProduct()"> Add Product <div class="icon material-symbols-outlined flex items-center justify-center absolute right-0 rounded-full px-3 p-2 h-12 bg-cyan-900 text-white-500 border-5 border-white">add</div></button>
     </div>
     
 </div>
-<!--<amplify-authenticator [hideSignUp]="true" variation="modal"></amplify-authenticator>-->
+<amplify-authenticator [hideSignUp]="true" variation="modal"></amplify-authenticator>
 <app-addproduct *ngIf=displayAddNewProduct></app-addproduct>
 <app-footer class="absolute left-0 bottom-0 min-w-full"></app-footer>

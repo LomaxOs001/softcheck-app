@@ -26,6 +26,12 @@
           "unauthRoleArn": "arn:aws:iam::891377160116:role/service-role/softcheck_identitypool_iam_role_unauth",
           "unauthRoleName": "softcheck_identitypool_iam_role_unauth"
         }
+      },
+      "storage": {
+        "supchainsecure2a07a334": {
+          "bucketName": "softcheck-s3-bucket-001",
+          "region": "us-east-1"
+        }
       }
     }
   }
