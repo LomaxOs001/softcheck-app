@@ -2,7 +2,7 @@
     
     <div class="form-modal-content border border-white w-3/5 p-3 text-white">
         <div class="flex justify-end mb-1">
-            <span class="material-symbols-outlined form-modal-close" (click)="addProduct.onCloseAddNewProduct()">
+            <span class="material-symbols-outlined form-modal-close" (click)="addProduct.closeAddProductForm()">
                 close
                 </span>
         </div>
@@ -28,6 +28,7 @@
                 
             </div>
             <button type="submit" class="btn btn-primary" (click)="onGetPro()">Proceed</button>
+            <div *ngIf="inProgress" class="text-black">Upload progress: {{ progress }}%</div>
         </form>
     </div>
 

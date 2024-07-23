@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Amplify } from 'aws-amplify';
 import awsconfig from '../../../aws-exports';
 //import native DOM validation UI
@@ -9,31 +10,29 @@ Amplify.configure(awsconfig);
 @Component({
   selector: 'app-addproduct',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, ProducersComponent],
+  imports: [FormsModule, ReactiveFormsModule, ProducersComponent, CommonModule],
   templateUrl: './addproduct.component.html',
   styleUrl: './addproduct.component.css'
 })
 
 
 export class AddproductComponent {
-    constructor(public addProduct: ProducersComponent) {
-      
-    }
+  progress: number = 0;
+  inProgress: boolean = false;
+    constructor(public addProduct: ProducersComponent) {}
     async onGetPro(){
       const file = 'testFile.txt';
       try {
         const result = await uploadData({
-          path: ({identityId}) => `protected/${identityId}/`,
+          path: ({identityId}) => `public/${identityId}/${file}`,
           data: file,
 
           options: {
             onProgress: ({ transferredBytes, totalBytes }) => {
               if (totalBytes) {
-                console.log(
-                  `Upload progress ${
-                    Math.round((transferredBytes / totalBytes) * 100)
-                  } %`
-                );
+                this.progress = Math.round((transferredBytes / totalBytes) * 100);
+                this.inProgress = true;
+                
               }
             }
           }

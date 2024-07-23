@@ -4,6 +4,7 @@ import { AmplifyAuthenticatorModule, AuthenticatorService } from '@aws-amplify/u
 import { Amplify } from 'aws-amplify';
 import awsconfig from '../../../aws-exports';
 
+Amplify.configure(awsconfig);
 
 @Component({
   selector: 'app-user-profile',
@@ -15,6 +16,5 @@ import awsconfig from '../../../aws-exports';
 
 export class UserProfileComponent {
   
-  constructor(public authService: AuthenticatorService) 
-  { Amplify.configure(awsconfig);}
+  constructor(public authService: AuthenticatorService) { }
 }
