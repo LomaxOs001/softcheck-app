@@ -1,29 +1,44 @@
 import { getProperties, uploadData } from '@aws-amplify/storage';
 
+export  type aProduct = {
+    name: string;
+    description: string;
+    price: number;
+    date: Date;
+    data: File;
+}
 export class Products {
-    
-    constructor(public orgImageUrl:string, public name: string, public description: string, public checkDate: Date = new Date(), public price: number, public data: File) {}
+    progress: number = 0;
+    isInProgress: boolean = false;
+
+    constructor() {}
 
     //Upload new product to S3
-    async uploadNewProduct(product: Products): Promise<string> {
-        const uploadResult = '';
+    async uploadNewProduct(product: aProduct): Promise<string> {
+
         try {
             const fileUploaded = await uploadData({
-                path: ({identityId}) => `protected/${identityId}`,
-                data: this.data,
+                path: ({identityId}) => `public/${identityId}/${product.data.name}`,
+                data: product.data,
                 options: {
                     onProgress: ({ transferredBytes, totalBytes}) =>{
                         if (totalBytes) 
-                            console.log(transferredBytes);
+                            this.progress = Math.round((transferredBytes / totalBytes) * 100);
+                            this.isInProgress = true;
                     }
                 }
             }).result;
 
-            return uploadResult;
+            console.log(fileUploaded);
+            return fileUploaded.path;
         } catch (error) {
-            return error as string;
+            throw new Error("Uploading new product failed");
         }
+        
 
     }
+    //TODO:
+    //Create data model for DB
+    //Create a function to store the product to DB
     
 }
