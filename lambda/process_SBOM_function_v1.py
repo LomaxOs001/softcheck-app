@@ -10,15 +10,16 @@ from pathlib import Path
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 S3API = boto3.client("s3", region_name="us-east-1") 
-SQSAPI = boto3.client("sqs", region_name="us-east-")
 
+
+def lambda_handler(event, context):
+    process_with_product_sbom(event)
     
     
 def process_with_product_sbom(arg):
     
     get_upload_product(arg)
     
-    generate_bill_of_material("package-lock.json")
     #Scan the generated SBOM
     result = scan_bill_of_material()
     
@@ -31,7 +32,6 @@ def process_with_product_sbom(arg):
         
     delete_temp_data("/temp/product_sbom.json")
         
-    
     
 def get_upload_product(event):
     try:
@@ -102,7 +102,7 @@ def manage_temp_file(objectAsByte):
 def generate_bill_of_material(data):
     
     try:
-        result = subprocess.run(["syft", "scan", data, "-o", "cyclonedx-json"], text=True, check=True, capture_output=True)
+        result = subprocess.run(["/opt/python/bin/python3.11/site-packages/syft", "scan", data, "-o", "cyclonedx-json"], text=True, check=True, capture_output=True)
 
         
         with open("/temp/product_sbom.json", "w") as f_sbom:
@@ -122,7 +122,7 @@ def generate_bill_of_material(data):
 def scan_bill_of_material():
     
     try:
-        result = subprocess.run(["grype", "sbom:/temp/product_sbom.json"], capture_output=True, text=True, check=True)
+        result = subprocess.run(["/opt/python/bin/python3.11/site-packages/grype", "sbom:/temp/product_sbom.json"], capture_output=True, text=True, check=True)
         
         
         if result.stdout:
@@ -177,5 +177,4 @@ def delete_temp_data(temp_data):
     except OSError as e:
         logger.error(f"Error deleting a file in {temp_path}: {str(e)}")
         
-if __name__ == '__main__':
-    process_with_product_sbom(event)
+    
