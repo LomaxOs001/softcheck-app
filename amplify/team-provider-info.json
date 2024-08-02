@@ -32,6 +32,9 @@
           "bucketName": "softcheck-s3-bucket-001",
           "region": "us-east-1"
         }
+      },
+      "api": {
+        "softcheckgraphapiapi001yo": {}
       }
     }
   }

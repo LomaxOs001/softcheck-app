@@ -1,13 +1,14 @@
 import { getProperties, uploadData } from '@aws-amplify/storage';
+import { generateClient } from '@aws-amplify/api'
+
 
 export  type aProduct = {
     name: string;
     description: string;
     price: number;
-    date: Date;
     data: File;
 }
-export class Products {
+export class ProductManagement {
     progress: number = 0;
     isInProgress: boolean = false;
 
@@ -18,6 +19,7 @@ export class Products {
 
         try {
             const fileUploaded = await uploadData({
+                
                 path: ({identityId}) => `public/${identityId}/${product.data.name}`,
                 data: product.data,
                 options: {
@@ -38,7 +40,10 @@ export class Products {
 
     }
     //TODO:
-    //Create data model for DB
-    //Create a function to store the product to DB
+
+    //delete product from S3
+
+
+    
     
 }

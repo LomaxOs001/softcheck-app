@@ -5,7 +5,12 @@ import awsconfig from '../../../aws-exports';
 //import native DOM validation UI
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProducersComponent } from '../producers/producers.component';
-import { aProduct, Products } from '../../classes/products';
+import { aProduct, ProductManagement } from '../../classes/productManagement';
+
+import { createProduct } from '../../../graphql/mutations';
+import { generateClient } from '@aws-amplify/api';
+import { v4 as uuidv4 } from 'uuid';
+
 
 
 Amplify.configure(awsconfig);
@@ -22,7 +27,6 @@ export class AddproductComponent {
   product: aProduct = {
     name: '',
     description: '',
-    date: new Date(),
     price: 0,
     data: null as unknown as File
   }
@@ -48,12 +52,23 @@ export class AddproductComponent {
   async proceedWithUpload() {
 
     if (this.isValidProduct(this.product)) {
-      const prod = new Products();
+      const prod = new ProductManagement();
 
       if (this.isValidDataType(this.product.data.name)){
 
         try {
+
           this.uploadedProductPath = await prod.uploadNewProduct(this.product);
+
+          
+          //TODO:
+          //call the function to store this product details to the DDB 
+          this.addProduct(this.uploadedProductPath);
+          //call function to query Vulnerability table from DDB
+          //retrieve and verify the response
+            //if the product status is not 
+              //set the status field to false
+            //else set the status field to true
         } catch (error) {
           window.alert("Error uploading product");
         }
@@ -78,43 +93,44 @@ export class AddproductComponent {
 
   private isValidDataType(dataType: string): boolean {
     const allowedExtensions = [
-      '.xml', '.gradle', '.kts', //Java
-      '.txt', '.toml', '.lock', '.yml', //Python
-      '.json', //Node.js/Angular/TypeScript
-      '.csproj', '.fsproj', '.vbproj', '.config', '.nuspec' //C#
+      '.xml', '.gradle', '.kts','.jar', 
+      '.txt', '.toml', '.lock', '.yml', 
+      '.json', 
+      '.csproj', '.fsproj', '.vbproj', '.config', '.nuspec' 
   ];
 
   const fileExtensions = dataType.substring(dataType.lastIndexOf('.'));
 
   return allowedExtensions.includes(fileExtensions);
   }
-    
-      
-    /*const file = 'testFile.txt';
-      
-    try {  
-      const result = await uploadData({  
-        path: ({identityId}) => `public/${identityId}/${file}`, 
-        data: file,
+    //TODO:
+    //add via API
+    async addProduct(path: string): Promise<any> {
+      const client = generateClient();
 
-        options: {
-          onProgress: ({ transferredBytes, totalBytes }) => {
-            if (totalBytes) {
-              this.progress = Math.round((transferredBytes / totalBytes) * 100);
-              this.inProgress = true;
-                
+      try {
+        const result = await client.graphql({
+          query: createProduct,
+          variables: {
+            input: {
+              ProductId: uuidv4(),
+              Name: 'Safari',
+              Description: 'La mainson du bonheur',
+              Price: 50000,
+              ProductKey: path
             }
           }
-        }
-      }).result;
-        console.log('File Properties ', result);
-      } catch (error) {
-        console.log('Error ', error);
+        })
+        console.log("GraphQl result:",result);
       }
-    }*/
-
-    //TODO:
-    //Add S3 storage lib
+      catch (err) {
+        console.error("GraphQL error:",err);
+        throw new Error("Error creating product:");
+        
+      }
+      
+      
+    }
     // 
     //
     

@@ -1,4 +1,39 @@
 {
+  "api": {
+    "softcheckgraphapiapi001yo": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "UserPoolId"
+          ],
+          "category": "auth",
+          "resourceName": "supchainsecure9ec57cd2"
+        }
+      ],
+      "output": {
+        "authConfig": {
+          "additionalAuthenticationProviders": [
+            {
+              "apiKeyConfig": {
+                "apiKeyExpirationDate": "2024-08-09T21:58:06.722Z",
+                "apiKeyExpirationDays": 7,
+                "description": "The Key to enable public api request"
+              },
+              "authenticationType": "API_KEY"
+            }
+          ],
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authsupchainsecure9ec57cd2"
+            }
+          }
+        }
+      },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync"
+    }
+  },
   "auth": {
     "supchainsecure9ec57cd2": {
       "customAuth": false,

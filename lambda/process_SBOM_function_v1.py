@@ -10,6 +10,7 @@ from pathlib import Path
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 S3API = boto3.client("s3", region_name="us-east-1") 
+SQSAPI = boto3.client("sqs", region_name="us-east-1")
 
 
 def lambda_handler(event, context):
@@ -34,7 +35,7 @@ def process_with_product_sbom(arg):
         
     
 def get_upload_product(event):
-    try:
+    try:    
         #Extract bucket name and object key
         record = event['Records'][0]
         bucketName = record['s3']['bucket']['name']
@@ -52,10 +53,11 @@ def get_upload_product(event):
         
         logger.info(f"Object content in Byte: {objectContentInByte}")
         
-        obectContentInString = json.loads(objectContentInByte.decode('utf-8'))
+        obectContentInJson = json.dumps(objectContentInByte.decode('utf-8'))
         #logger.info(f"Object content in String:{obectContentInString}")
         
-        manage_temp_file(obectContentInString)
+        manage_temp_file(obectContentInJson)
+        
         
         
             
@@ -76,15 +78,16 @@ def get_upload_product(event):
         
         
         
-def manage_temp_file(objectAsByte):
+def manage_temp_file(JsonFile):
 
     global temp_file
 
     try:
         with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as temp_f:
             
-            temp_f.write(json.dumps(objectAsByte).encode('utf-8'))
+            temp_f.write(JsonFile)
             temp_file = temp_f.name
+            
             
             logger.info(f"Created a temporary file: {temp_file}")
         
@@ -102,7 +105,7 @@ def manage_temp_file(objectAsByte):
 def generate_bill_of_material(data):
     
     try:
-        result = subprocess.run(["/opt/python/bin/python3.11/site-packages/syft", "scan", data, "-o", "cyclonedx-json"], text=True, check=True, capture_output=True)
+        result = subprocess.run(["syft", "scan", data, "-o", "cyclonedx-json"], text=True, check=True, capture_output=True)
 
         
         with open("/temp/product_sbom.json", "w") as f_sbom:
@@ -122,7 +125,7 @@ def generate_bill_of_material(data):
 def scan_bill_of_material():
     
     try:
-        result = subprocess.run(["/opt/python/bin/python3.11/site-packages/grype", "sbom:/temp/product_sbom.json"], capture_output=True, text=True, check=True)
+        result = subprocess.run(["grype", "sbom:/temp/product_sbom.json"], capture_output=True, text=True, check=True)
         
         
         if result.stdout:

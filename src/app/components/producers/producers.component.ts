@@ -26,6 +26,7 @@ export class ProducersComponent {
   }
   closeAddProductForm(): void{
     this.displayAddNewProduct = false;
+  
   }
 
 }
