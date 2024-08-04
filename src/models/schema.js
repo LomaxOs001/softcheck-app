@@ -91,7 +91,8 @@ export const schema = {
                     "type": "key",
                     "properties": {
                         "fields": [
-                            "ProductId"
+                            "ProductId",
+                            "Price"
                         ]
                     }
                 },

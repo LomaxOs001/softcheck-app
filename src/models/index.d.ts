@@ -1,4 +1,4 @@
-import { ModelInit, MutableModel, __modelMeta__, CustomIdentifier } from "@aws-amplify/datastore";
+import { ModelInit, MutableModel, __modelMeta__, CompositeIdentifier, CustomIdentifier } from "@aws-amplify/datastore";
 // @ts-ignore
 import { LazyLoading, LazyLoadingDisabled, AsyncItem } from "@aws-amplify/datastore";
 
@@ -8,7 +8,7 @@ import { LazyLoading, LazyLoadingDisabled, AsyncItem } from "@aws-amplify/datast
 
 type EagerProduct = {
   readonly [__modelMeta__]: {
-    identifier: CustomIdentifier<Product, 'ProductId'>;
+    identifier: CompositeIdentifier<Product, ['ProductId', 'Price']>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly ProductId: string;
@@ -24,7 +24,7 @@ type EagerProduct = {
 
 type LazyProduct = {
   readonly [__modelMeta__]: {
-    identifier: CustomIdentifier<Product, 'ProductId'>;
+    identifier: CompositeIdentifier<Product, ['ProductId', 'Price']>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly ProductId: string;

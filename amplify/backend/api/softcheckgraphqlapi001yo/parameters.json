@@ -1,5 +1,5 @@
 {
-  "AppSyncApiName": "softcheckgraphapiapi001yo",
+  "AppSyncApiName": "softcheckgraphqlapi001yo",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
   "DynamoDBEnableServerSideEncryption": false,
   "AuthCognitoUserPoolId": {

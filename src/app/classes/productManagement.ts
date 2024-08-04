@@ -2,25 +2,24 @@ import { getProperties, uploadData } from '@aws-amplify/storage';
 import { generateClient } from '@aws-amplify/api'
 
 
-export  type aProduct = {
+export  type Product = {
     name: string;
     description: string;
     price: number;
     data: File;
 }
-export class ProductManagement {
+class ProductManagement {
     progress: number = 0;
     isInProgress: boolean = false;
 
     constructor() {}
 
     //Upload new product to S3
-    async uploadNewProduct(product: aProduct): Promise<string> {
-
+    async uploadNewProduct(product: Product): Promise<string> {
         try {
             const fileUploaded = await uploadData({
                 
-                path: ({identityId}) => `public/${identityId}/${product.data.name}`,
+                path: ({identityId}) => `protected/${identityId}/${product.data.name}`,
                 data: product.data,
                 options: {
                     onProgress: ({ transferredBytes, totalBytes}) =>{
@@ -39,11 +38,7 @@ export class ProductManagement {
         
 
     }
-    //TODO:
-
-    //delete product from S3
-
-
-    
-    
+   
 }
+
+export { ProductManagement}

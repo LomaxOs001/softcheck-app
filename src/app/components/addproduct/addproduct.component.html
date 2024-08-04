@@ -2,13 +2,13 @@
     
     <div class="form-modal-content border border-white w-3/5 p-3 text-white">
         <div class="flex justify-end mb-1">
-            <span class="material-symbols-outlined form-modal-close" (click)="producersItemAddProduct.closeAddProductForm()">
+            <span class="material-symbols-outlined form-modal-close" (click)="producersComponent.closeAddProductForm()">
                 close
                 </span>
         </div>
         
         <form class="form-horizontal rounded p-8 bg-white flex flex-col space-y-4" name="form"
-        (ngSubmit)="f.form.valid && proceedWithUpload()" #f="ngForm">
+        (ngSubmit)="f.form.valid && onSubmitProductDetails()" #f="ngForm">
 
             <div class="border border-black">
                 <input type="text" name="name" placeholder="Enter product name" #name="ngModel" [(ngModel)]="product.name" required>
@@ -28,7 +28,7 @@
                 </div>
                 <h3 class="font-semibold mt-3 mb-2">Upload a file</h3>
                 <div class="upload-box-space flex justify-center border-dashed border-2 border-gray-300">
-                    <input type="file" name="file" class="file-input" (change)="onFileInput($event)">
+                    <input type="file" name="file" class="file-input" (change)="onArtifactInput($event)">
                 </div>
                 
             </div>

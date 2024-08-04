@@ -8,8 +8,8 @@ type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryOutput: OutputType;
 };
 
-export const getProduct = /* GraphQL */ `query GetProduct($ProductId: ID!) {
-  getProduct(ProductId: $ProductId) {
+export const getProduct = /* GraphQL */ `query GetProduct($ProductId: ID!, $Price: Int!) {
+  getProduct(ProductId: $ProductId, Price: $Price) {
     ProductId
     Name
     Description
@@ -42,6 +42,7 @@ export const getProduct = /* GraphQL */ `query GetProduct($ProductId: ID!) {
 >;
 export const listProducts = /* GraphQL */ `query ListProducts(
   $ProductId: ID
+  $Price: ModelIntKeyConditionInput
   $filter: ModelProductFilterInput
   $limit: Int
   $nextToken: String
@@ -49,6 +50,7 @@ export const listProducts = /* GraphQL */ `query ListProducts(
 ) {
   listProducts(
     ProductId: $ProductId
+    Price: $Price
     filter: $filter
     limit: $limit
     nextToken: $nextToken

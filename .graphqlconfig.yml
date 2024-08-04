@@ -1,5 +1,5 @@
 projects:
-  softcheckgraphapiapi001yo:
+  softcheckgraphqlapi001yo:
     schemaPath: src/graphql/schema.json
     includes:
       - src/graphql/**/*.ts

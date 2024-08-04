@@ -5,11 +5,10 @@ import awsconfig from '../../../aws-exports';
 //import native DOM validation UI
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProducersComponent } from '../producers/producers.component';
-import { aProduct, ProductManagement } from '../../classes/productManagement';
-
-import { createProduct } from '../../../graphql/mutations';
-import { generateClient } from '@aws-amplify/api';
-import { v4 as uuidv4 } from 'uuid';
+import { Product, ProductManagement } from '../../classes/productManagement';
+import { CRUDOperations } from '../../classes/CRUDOperations';
+import { AuthenticatorService } from '@aws-amplify/ui-angular';
+import { Router } from '@angular/router';
 
 
 
@@ -23,22 +22,24 @@ Amplify.configure(awsconfig);
 })
 
 
-export class AddproductComponent {
-  product: aProduct = {
+class AddproductComponent {
+
+  disabledProceedBtn: boolean = false;
+  productPath: string = '';
+  createdAt: string = '';
+  product: Product = {
     name: '',
     description: '',
     price: 0,
     data: null as unknown as File
   }
-  disabledProceedBtn: boolean = false;
-
-  uploadedProductPath: string = '';
+  
 
     
-  constructor(public producersItemAddProduct: ProducersComponent) {}
+  constructor(public producersComponent: ProducersComponent, private authService: AuthenticatorService, private router: Router) {}
 
-  //return file data from UI
-  async onFileInput(event: Event): Promise<void> {
+
+  async onArtifactInput(event: Event): Promise<void> {
     const fileInput= event.target as HTMLInputElement;
     const fileItem = fileInput.files?.[0];
 
@@ -49,27 +50,30 @@ export class AddproductComponent {
       
   }
     
-  async proceedWithUpload() {
+  async onSubmitProductDetails() {
 
-    if (this.isValidProduct(this.product)) {
-      const prod = new ProductManagement();
+    if (this.validateProductDetails(this.product)) {
 
-      if (this.isValidDataType(this.product.data.name)){
+      const pm = new ProductManagement();
+      const crud = new CRUDOperations();
+      let id = '';
+
+      if (this.validateArtifactExtensionType(this.product.data.name)){
 
         try {
 
-          this.uploadedProductPath = await prod.uploadNewProduct(this.product);
+          this.productPath = await pm.uploadNewProduct(this.product); //Uplaod artifact to S3
 
           
-          //TODO:
-          //call the function to store this product details to the DDB 
-          this.addProduct(this.uploadedProductPath);
-          //call function to query Vulnerability table from DDB
-          //retrieve and verify the response
-            //if the product status is not 
-              //set the status field to false
-            //else set the status field to true
-        } catch (error) {
+          if (this.authService.authStatus === 'authenticated') {
+            id = this.authService.user.userId; //get this user cognito id when creating new product
+            
+            this.createdAt = await crud.createProductItemInDDB(this.authService.user.userId, this.product, this.productPath)
+
+            this.router.navigate(['/producers']);
+          }
+
+        }catch (error) {
           window.alert("Error uploading product");
         }
 
@@ -84,14 +88,14 @@ export class AddproductComponent {
     }
   }
 
-  private isValidProduct(product: aProduct): boolean {
+  private validateProductDetails(product: Product): boolean {
     return product.name.trim() !== '' &&
            product.description.trim() !== '' &&
            product.price > 0 &&
            product.data instanceof File;
   }
 
-  private isValidDataType(dataType: string): boolean {
+  private validateArtifactExtensionType(dataType: string): boolean {
     const allowedExtensions = [
       '.xml', '.gradle', '.kts','.jar', 
       '.txt', '.toml', '.lock', '.yml', 
@@ -99,40 +103,10 @@ export class AddproductComponent {
       '.csproj', '.fsproj', '.vbproj', '.config', '.nuspec' 
   ];
 
-  const fileExtensions = dataType.substring(dataType.lastIndexOf('.'));
+    const fileExtensions = dataType.substring(dataType.lastIndexOf('.'));
 
-  return allowedExtensions.includes(fileExtensions);
+    return allowedExtensions.includes(fileExtensions);
   }
-    //TODO:
-    //add via API
-    async addProduct(path: string): Promise<any> {
-      const client = generateClient();
-
-      try {
-        const result = await client.graphql({
-          query: createProduct,
-          variables: {
-            input: {
-              ProductId: uuidv4(),
-              Name: 'Safari',
-              Description: 'La mainson du bonheur',
-              Price: 50000,
-              ProductKey: path
-            }
-          }
-        })
-        console.log("GraphQl result:",result);
-      }
-      catch (err) {
-        console.error("GraphQL error:",err);
-        throw new Error("Error creating product:");
-        
-      }
-      
-      
-    }
-    // 
-    //
-    
-
 }
+
+export {AddproductComponent}
