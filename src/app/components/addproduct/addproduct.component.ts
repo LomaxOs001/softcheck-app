@@ -70,10 +70,13 @@ class AddproductComponent {
             
             this.createdAt = await crud.createProductItemInDDB(this.authService.user.userId, this.product, this.productPath)
 
+            crud.readProductItemsFromDDB(this.authService.user.userId);
+
             this.router.navigate(['/producers']);
           }
 
         }catch (error) {
+          console.log(error);
           window.alert("Error uploading product");
         }
 

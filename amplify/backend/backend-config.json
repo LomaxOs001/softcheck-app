@@ -1,6 +1,6 @@
 {
   "api": {
-    "softcheckgraphqlapi001yo": {
+    "softcheckgraphapiapi001yo": {
       "dependsOn": [
         {
           "attributes": [
@@ -15,7 +15,7 @@
           "additionalAuthenticationProviders": [
             {
               "apiKeyConfig": {
-                "apiKeyExpirationDate": "2024-08-10T19:57:15.186Z",
+                "apiKeyExpirationDate": "2024-08-19T16:33:33.290Z",
                 "apiKeyExpirationDays": 7,
                 "description": ""
               },

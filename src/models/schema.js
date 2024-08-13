@@ -92,7 +92,7 @@ export const schema = {
                     "properties": {
                         "fields": [
                             "ProductId",
-                            "Price"
+                            "Name"
                         ]
                     }
                 },

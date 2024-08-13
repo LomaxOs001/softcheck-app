@@ -2,14 +2,14 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-import * as APITypes from "../APIGraphQL";
+import * as APITypes from "../GraphqlAPI";
 type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryInput: InputType;
   __generatedQueryOutput: OutputType;
 };
 
-export const getProduct = /* GraphQL */ `query GetProduct($ProductId: ID!, $Price: Int!) {
-  getProduct(ProductId: $ProductId, Price: $Price) {
+export const getProduct = /* GraphQL */ `query GetProduct($ProductId: ID!, $Name: String!) {
+  getProduct(ProductId: $ProductId, Name: $Name) {
     ProductId
     Name
     Description
@@ -42,7 +42,7 @@ export const getProduct = /* GraphQL */ `query GetProduct($ProductId: ID!, $Pric
 >;
 export const listProducts = /* GraphQL */ `query ListProducts(
   $ProductId: ID
-  $Price: ModelIntKeyConditionInput
+  $Name: ModelStringKeyConditionInput
   $filter: ModelProductFilterInput
   $limit: Int
   $nextToken: String
@@ -50,7 +50,7 @@ export const listProducts = /* GraphQL */ `query ListProducts(
 ) {
   listProducts(
     ProductId: $ProductId
-    Price: $Price
+    Name: $Name
     filter: $filter
     limit: $limit
     nextToken: $nextToken

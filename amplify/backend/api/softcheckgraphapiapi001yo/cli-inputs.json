@@ -1,7 +1,7 @@
 {
   "version": 1,
   "serviceConfiguration": {
-    "apiName": "softcheckgraphqlapi001yo",
+    "apiName": "softcheckgraphapiapi001yo",
     "serviceName": "AppSync",
     "defaultAuthType": {
       "mode": "AMAZON_COGNITO_USER_POOLS",
@@ -11,7 +11,7 @@
       {
         "mode": "API_KEY",
         "expirationTime": 7,
-        "apiKeyExpirationDate": "2024-08-10T19:57:15.186Z",
+        "apiKeyExpirationDate": "2024-08-19T16:33:33.290Z",
         "keyDescription": ""
       }
     ],

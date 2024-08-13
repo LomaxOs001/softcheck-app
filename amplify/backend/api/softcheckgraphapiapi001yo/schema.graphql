@@ -1,7 +1,7 @@
 type Product
   @model
   @auth(rules: [{ allow: public, operations: [read] }, { allow: owner }]) {
-  ProductId: ID! @primaryKey(sortKeyFields: ["Price"])
+  ProductId: ID! @primaryKey(sortKeyFields: ["Name"])
   Name: String!
   Description: String!
   StateId: ID

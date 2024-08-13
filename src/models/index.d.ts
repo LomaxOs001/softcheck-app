@@ -8,7 +8,7 @@ import { LazyLoading, LazyLoadingDisabled, AsyncItem } from "@aws-amplify/datast
 
 type EagerProduct = {
   readonly [__modelMeta__]: {
-    identifier: CompositeIdentifier<Product, ['ProductId', 'Price']>;
+    identifier: CompositeIdentifier<Product, ['ProductId', 'Name']>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly ProductId: string;
@@ -24,7 +24,7 @@ type EagerProduct = {
 
 type LazyProduct = {
   readonly [__modelMeta__]: {
-    identifier: CompositeIdentifier<Product, ['ProductId', 'Price']>;
+    identifier: CompositeIdentifier<Product, ['ProductId', 'Name']>;
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly ProductId: string;

@@ -13,9 +13,9 @@ export type CreateProductInput = {
 };
 
 export type ModelProductConditionInput = {
-  Name?: ModelStringInput | null,
   Description?: ModelStringInput | null,
   StateId?: ModelIDInput | null,
+  Price?: ModelIntInput | null,
   ProductKey?: ModelStringInput | null,
   and?: Array< ModelProductConditionInput | null > | null,
   or?: Array< ModelProductConditionInput | null > | null,
@@ -82,6 +82,18 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
+export type ModelIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
 export type ModelBooleanInput = {
   ne?: boolean | null,
   eq?: boolean | null,
@@ -120,17 +132,17 @@ export type Vulnerability = {
 
 export type UpdateProductInput = {
   ProductId: string,
-  Name?: string | null,
+  Name: string,
   Description?: string | null,
   StateId?: string | null,
-  Price: number,
+  Price?: number | null,
   ProductKey?: string | null,
   _version?: number | null,
 };
 
 export type DeleteProductInput = {
   ProductId: string,
-  Price: number,
+  Name: string,
   _version?: number | null,
 };
 
@@ -162,13 +174,14 @@ export type DeleteVulnerabilityInput = {
   _version?: number | null,
 };
 
-export type ModelIntKeyConditionInput = {
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
+export type ModelStringKeyConditionInput = {
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
 };
 
 export type ModelProductFilterInput = {
@@ -186,18 +199,6 @@ export type ModelProductFilterInput = {
   not?: ModelProductFilterInput | null,
   _deleted?: ModelBooleanInput | null,
   owner?: ModelStringInput | null,
-};
-
-export type ModelIntInput = {
-  ne?: number | null,
-  eq?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  between?: Array< number | null > | null,
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
 };
 
 export enum ModelSortDirection {
@@ -469,7 +470,7 @@ export type DeleteVulnerabilityMutation = {
 
 export type GetProductQueryVariables = {
   ProductId: string,
-  Price: number,
+  Name: string,
 };
 
 export type GetProductQuery = {
@@ -503,7 +504,7 @@ export type GetProductQuery = {
 
 export type ListProductsQueryVariables = {
   ProductId?: string | null,
-  Price?: ModelIntKeyConditionInput | null,
+  Name?: ModelStringKeyConditionInput | null,
   filter?: ModelProductFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
