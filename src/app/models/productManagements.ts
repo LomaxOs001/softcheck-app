@@ -1,13 +1,12 @@
-import { getProperties, uploadData } from '@aws-amplify/storage';
-import { generateClient } from '@aws-amplify/api'
+import { uploadData } from '@aws-amplify/storage';
 
-
-export  type Product = {
+export  type ProductType = {
     name: string;
     description: string;
     price: number;
     data: File;
 }
+
 class ProductManagement {
     progress: number = 0;
     isInProgress: boolean = false;
@@ -15,7 +14,7 @@ class ProductManagement {
     constructor() {}
 
     //Upload new product to S3
-    async uploadNewProduct(product: Product): Promise<string> {
+    async uploadNewProduct(product: ProductType): Promise<string> {
         try {
             const fileUploaded = await uploadData({
                 

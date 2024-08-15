@@ -13,10 +13,14 @@ from pathlib import Path
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
+
 S3_API = boto3.client("s3", region_name="us-east-1")
 SQS_API = boto3.client("sqs", region_name="us-east-1")
-DDB_API = boto3.client("db", region_name="us-east-1")
+DDB_API = boto3.resource("dynamodb", region_name="us-east-1")
+
 QUEUE_URL ="https://sqs.us-east-1.amazonaws.com/891377160116/SoftCheck_SQS_Queue_v1"
+TABLE_VULNERABILITY = DDB_API.Table('Vulnerability-xias2m6jprfjvgqk6ab6xuuxmm-dev')
+TABLE_PRODUCT = DDB_API.Table('Product-xias2m6jprfjvgqk6ab6xuuxmm-dev')
 
 def process_with_product_sbom():
 
@@ -45,10 +49,9 @@ def get_received_message_from_sqs():
                                         s3_event = json.loads(message['Body'])
 
                                         print(f"S3 event occured: {s3_event}")
-                                        
-                                        time.sleep(5)
+                                
 
-                                        get_uploaded_product_from_s3(s3_event)
+                                        fetch_uploaded_product_from_s3(s3_event)
 
                                         SQS_API.delete_message(QueueUrl=QUEUE_URL, ReceiptHandle=receipt_handle)
 
@@ -60,7 +63,7 @@ def get_received_message_from_sqs():
 
                 time.sleep(5)
 
-def get_uploaded_product_from_s3(event):
+def fetch_uploaded_product_from_s3(event):
 
         try:
 
@@ -173,8 +176,13 @@ def scan_bill_of_material():
                 logger.error(f"Error - Unexpected error occurred during SBOM scan: {str(e)}")
                 return None
 
-#Method to manage Flask functionalities
-def send_result_to_user(result):
+def store_sbom_analysis_result(result, product_key):
+        
+        fetch_product_index_item_from_ddb(product_key)
+        
+        analysisResult = True
+        
+        create_vulnerability_item_in_ddb(product_key, analysisResult)
 
         vulnerabilty_results = result.stdout
 
@@ -182,6 +190,38 @@ def send_result_to_user(result):
 
                 #send return via API
                 #return None
+def fetch_product_index_item_from_ddb(product_key):
+                
+        try:
+                response = TABLE_PRODUCT.get_item(Key={'productKey': product_key})
+                
+                if 'Item' in response:
+                        print(f"Product item found in DDB: {response['Item']}")
+                        
+                else:
+                        print(f"Product item not found in DDB")
+                        
+        except Exception as e:
+                logger.error(f"Error occurred when fetching product item from DDB: {str(e)}")
+                
+        return response
+
+def create_vulnerability_item_in_ddb(product_key, analysis_result):
+        
+        try:
+        
+                TABLE_VULNERABILITY.put_item(
+                        Item={
+                                'productKey': product_key,
+                                'vulnerability': analysis_result
+                        }
+                )
+                
+                print(f"Vulnerability item created in DDB: {str(product_key)}")
+        except Exception as e:
+                
+                logger.error(f"Error occurred when creating vulnerability item in DDB: {str(e)}")
+        
 def delete_temp_data(temp_data):
 
         temp_path = Path(temp_data)

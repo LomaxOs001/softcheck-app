@@ -8,7 +8,7 @@ import { Amplify } from 'aws-amplify';
 import awsconfig from '../../aws-exports';
 import { CognitoIdentityClient } from "@aws-sdk/client-cognito-identity"
 import { fromCognitoIdentityPool  } from "@aws-sdk/credential-provider-cognito-identity";
-import { MyLocalStorage } from '../services/myLocalStorage';
+import { MyLocalStorage } from './localStorageServices';
 
 
 //Amplify.configure(awsconfig);

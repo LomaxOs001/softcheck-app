@@ -1,6 +1,6 @@
 type Product
   @model
-  @auth(rules: [{ allow: public, operations: [read] }, { allow: owner }]) {
+  @auth(rules: [{ allow: private, operations: [read] }, { allow: owner }]) {
   ProductId: ID! @primaryKey(sortKeyFields: ["Name"])
   Name: String!
   Description: String!
@@ -12,7 +12,7 @@ type Product
 
 type Vulnerability
   @model
-  @auth(rules: [{ allow: public, operations: [read] }, { allow: owner }]) {
+  @auth(rules: [{ allow: private, operations: [read] }, { allow: owner }]) {
   VulnerabilityId: ID! @primaryKey
   IsVulnerable: Boolean!
 }

@@ -7,7 +7,7 @@ import { DataManagementComponent } from '../data.management/data.management.comp
 import { FooterComponent} from '../footer/footer.component';
 import { HeaderComponent} from '../header/header.component';
 import { Router } from '@angular/router';
-import { MyLocalStorage } from '../../services/myLocalStorage';
+import { MyLocalStorage } from '../../services/localStorageServices';
 import { signUp, SignUpInput } from 'aws-amplify/auth';
 
 import awsconfig from '../../../aws-exports';

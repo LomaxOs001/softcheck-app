@@ -32,7 +32,7 @@
                 </div>
                 
             </div>
-            <button type="submit" class="btn btn-primary" [disabled]="!disabledProceedBtn || name.errors || description.errors || price.errors">Proceed</button>
+            <button type="submit" class="btn btn-primary" [disabled]="!activateProceedBtn || name.errors || description.errors || price.errors">Proceed</button>
             <!--<div *ngIf="inProgress" class="text-black">Upload progress: {{ progress }}%</div>-->
         </form>
     </div>

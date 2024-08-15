@@ -4,7 +4,7 @@ import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
 import { HeaderComponent} from '../header/header.component';
 import { Amplify } from 'aws-amplify';
 import { Router, RouterLink} from '@angular/router';
-import { MyLocalStorage } from '../../services/myLocalStorage';
+import { MyLocalStorage } from '../../services/localStorageServices';
 import awsconfig from '../../../aws-exports';
 import { FooterComponent } from "../footer/footer.component";
 

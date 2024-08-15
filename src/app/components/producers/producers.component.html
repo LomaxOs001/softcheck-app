@@ -1,23 +1,38 @@
-<div class="flex flex-row h-48 left-0 top-0 min-w-full border border-black p-20 bg-gradient-to-r from-green-200 to-blue-300">
+<div class="flex flex-row h-48 left-0 top-0 max-w-full p-20 bg-gradient-to-r from-green-200 to-blue-300">
     <app-header class="pb-6 mb-12 flex flex-row"></app-header>
 </div>
-<div class="flex flex-column mt-5 relative border border-black p-20">
-    <div class="">
-        <div class="product-detail-box flex flex-row justify-around items-center p-2.5 border border-black font-semibold">
-            <div class="product-img border border-black"><img src="../../../assets/images/org0.jpg"></div>
-            <div class="product_name">SoftCheck</div>
-            <div class="product_desc">Description</div>
-            <div class="product_date">22/07/2024</div>
-            <div class="product_state"><span>Pass</span></div>
-            <div class="product_price">€ 20.000</div>
-            <button class="btn btn-primary" >Update</button>
-            <button class="btn btn-primary" >Delete</button>
+<div class="flex flex-column mt-5 ml-2 mr-2 mb-5 static ">
+  <div class="flex flex-row flex-1 w-full bg-gray-200 mb-2 justify-between rounded-md">
+    <div class="w-1/6 pl-4 ">Name</div>
+    <div class="w-5/12 pl-4 ">Description</div>
+    <div class="w-1/6 pl-4 ">Created</div>
+    <div class="w-56 pl-6 ">Severity</div>
+    <div class="w-1/4 pl-9">Price</div>
+  </div>
+  <div *ngFor="let product of producerFetchResult">
+    <div class="product-detail-box flex flex-row items-center justify-evenly mb-2 font-semibold static">
+      <div class="flex flex-1 flex-row w-full">
+        <div class="product-img ">
+          <img src="../../../assets/images/org0.jpg" class="border border-black" alt="Product Image"> 
         </div>
-
-        <button class="button absolute bottom-0 right-16 flex items-center bg-cyan-900 text-white px-4 py-2 w-48 h-12 mb-2 rounded-full" (click)="openAddNewProductForm()"> Add Product <div class="icon material-symbols-outlined flex items-center justify-center absolute right-0 rounded-full px-3 p-2 h-12 bg-cyan-900 text-white-500 border-5 border-white">add</div></button>
+        <div class="truncate w-1/5 pl-2 py-3">{{ product.name }}</div>
+        <div class="truncate w-3/5 pl-2 py-3">dfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsssssssssssssssssssssssssssss</div>
+        <div class="truncate w-1/4 pl-2 py-3">{{ product.date }}</div>
+        <div class="w-1/6 pl-4 py-3"><span>{{ 'pass' || product.vulnerabilityState }}</span></div>
+        <div class="w-1/5 pl-4 py-3">{{ product.price | currency: 'EUR' }}</div>
+      </div>
+      <div class="flex space-x-2">
+        <button class="btn btn-primary">Update</button>
+        <button class="btn btn-primary">Delete</button>
+      </div>
     </div>
-    
+  </div>
+
+  <button class="button ml-auto flex items-center bg-cyan-900 text-white px-4 py-2 w-48 h-12 mb-2 mt-2 rounded-full" (click)="openAddNewProductForm()">
+    Add Product
+    <div class="icon material-symbols-outlined flex items-center justify-center absolute right-0 rounded-full px-3 p-2 h-12 bg-cyan-900 text-white-500 border-5 border-white">add</div>
+  </button>
 </div>
 <amplify-authenticator [hideSignUp]="true" variation="modal"></amplify-authenticator>
-<app-addproduct *ngIf=displayAddNewProduct></app-addproduct>
-<app-footer class="absolute left-0 bottom-0 min-w-full"></app-footer>
+<app-addproduct *ngIf=activateNewProductForm></app-addproduct>
+<app-footer class="static w-full"></app-footer>

@@ -3,8 +3,13 @@ import { Router, RouterOutlet, RouterModule } from '@angular/router';
 import { Amplify } from 'aws-amplify';
 import awsconfig from '../../../aws-exports';
 import { Hub } from 'aws-amplify/utils';
-import { fetchAuthSession } from 'aws-amplify/auth';
-import { MyLocalStorage } from '../../services/myLocalStorage';
+import { fetchAuthSession} from 'aws-amplify/auth';
+import { AuthenticatorService } from '@aws-amplify/ui-angular';
+import { MyLocalStorage } from '../../services/localStorageServices';
+import { CRUDOperations } from '../../models/CRUDOperations';
+import { ProducersComponent } from '../producers/producers.component';
+import { ProductService } from '../../services/productServices';
+import { ProductDocuments } from '../../models/productDocuments';
 
 Amplify.configure(awsconfig);
 @Component({
@@ -13,24 +18,31 @@ Amplify.configure(awsconfig);
   imports: [RouterModule, RouterOutlet],
   templateUrl: './root.component.html'
 })
-export class RootComponent implements OnInit { 
-  constructor(private router: Router, private session: MyLocalStorage) {
-  }
+
+class RootComponent implements OnInit { 
+
+  crud = new CRUDOperations();
+  producerFetchResult: ProductDocuments[] = [];
+  consumerFetchResult: ProductDocuments[] = [];
+
+  constructor(private router: Router, private session: MyLocalStorage, private authService: AuthenticatorService, private productService: ProductService) {}
+
+  
   ngOnInit(): void {
     Hub.listen('auth', (data) => {
       const { payload } = data;
   
       if (payload.event === 'signedIn') {
         this.session.setToken();
-        
-        this.checkGroupTypes();
-          // console.log("Signed in event: ", groups);
       }
       if (payload.event === 'signedOut') {
         this.router.navigate(['/']);
         this.session.clear();
       }
     });
+
+    this.checkGroupTypes();
+    
   }
   //Return Amazon Cognito group belonging to current authenticated user
   async getGroups(): Promise<string[]> {
@@ -45,23 +57,30 @@ export class RootComponent implements OnInit {
     }
   }
   
+  //verify group types to fetch either producer or consumer data
   async checkGroupTypes() {
     const groups = await this.getGroups();
+    let id = '';
   
     if (groups.includes("producers")) {
-      //TODO:
-      //call function that returns producers' data via GraphQL query
-      console.log("user group type is producers");
+ 
+      id = this.authService.user.userId;
+      const result = await this.crud.fetchProductItemsById(id); //fetch to return producers' data via GraphQL query
+      this.productService.updateFetchResultSource(result);
+
+      console.log("Producer group type", result);
+
     } else if (groups.includes("consumers")) {
-      //TODO:
-      //call function that returns consumers' data via GraphQL query
-      console.log("user group type is consumers");
+      
+      const result = await this.crud.fetchProductItems(); //fetch to return consumers' data via GraphQL query
+      this.productService.updateFetchResultSource(result);
+
+      console.log("Consumer group type", result);      
     } else {
       console.log("No user group type specified");
     }
   }
-  //TODO:
-  // Perform query operation to retrieve producer data
-  // Perform query operation to retrieve consumer data
-
+  
 }
+
+export { RootComponent };

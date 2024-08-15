@@ -80,6 +80,41 @@ export const listProducts = /* GraphQL */ `query ListProducts(
   APITypes.ListProductsQueryVariables,
   APITypes.ListProductsQuery
 >;
+
+export const customListProducts = /* GraphQL */ `query CustomListProducts(
+  $ProductId: ID
+  $Name: ModelStringKeyConditionInput
+  $filter: ModelProductFilterInput
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listProducts(
+    ProductId: $ProductId
+    Name: $Name
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      ProductId
+      Name
+      Description
+      StateId
+      Price
+      createdAt
+    }
+    nextToken
+    startedAt
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListProductsQueryVariables,
+  APITypes.ListProductsQuery
+>;
+
 export const syncProducts = /* GraphQL */ `query SyncProducts(
   $filter: ModelProductFilterInput
   $limit: Int

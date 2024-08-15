@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Amplify } from 'aws-amplify';
 import awsconfig from '../../../aws-exports';
-//import native DOM validation UI
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProducersComponent } from '../producers/producers.component';
-import { Product, ProductManagement } from '../../classes/productManagement';
-import { CRUDOperations } from '../../classes/CRUDOperations';
+import { ProductType, ProductManagement } from '../../models/productManagements';
+import { CRUDOperations } from '../../models/CRUDOperations';
 import { AuthenticatorService } from '@aws-amplify/ui-angular';
 import { Router } from '@angular/router';
 
@@ -24,10 +23,10 @@ Amplify.configure(awsconfig);
 
 class AddproductComponent {
 
-  disabledProceedBtn: boolean = false;
-  productPath: string = '';
-  createdAt: string = '';
-  product: Product = {
+  activateProceedBtn: boolean = false;
+  productPathInBucket: string = '';
+  productCreationResult: string = '';
+  product: ProductType = {
     name: '',
     description: '',
     price: 0,
@@ -45,7 +44,7 @@ class AddproductComponent {
 
     if(fileItem) {
       this.product.data = fileItem;
-      this.disabledProceedBtn = true;
+      this.activateProceedBtn = true;
     }
       
   }
@@ -62,17 +61,15 @@ class AddproductComponent {
 
         try {
 
-          this.productPath = await pm.uploadNewProduct(this.product); //Uplaod artifact to S3
+          this.productPathInBucket = await pm.uploadNewProduct(this.product); //Uplaod artifact to S3
 
           
           if (this.authService.authStatus === 'authenticated') {
             id = this.authService.user.userId; //get this user cognito id when creating new product
             
-            this.createdAt = await crud.createProductItemInDDB(this.authService.user.userId, this.product, this.productPath)
+            this.productCreationResult = await crud.createProductItemInDDB(id, this.product, this.productPathInBucket)
 
-            crud.readProductItemsFromDDB(this.authService.user.userId);
-
-            this.router.navigate(['/producers']);
+            this.producersComponent.closeAddProductForm();
           }
 
         }catch (error) {
@@ -91,7 +88,7 @@ class AddproductComponent {
     }
   }
 
-  private validateProductDetails(product: Product): boolean {
+  private validateProductDetails(product: ProductType): boolean {
     return product.name.trim() !== '' &&
            product.description.trim() !== '' &&
            product.price > 0 &&

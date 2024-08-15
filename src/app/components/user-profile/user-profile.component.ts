@@ -15,6 +15,23 @@ Amplify.configure(awsconfig);
 })
 
 export class UserProfileComponent {
+
+  authzResult: string = '';
   
   constructor(public authService: AuthenticatorService) { }
+
+  async ngOnInit() {
+    if (this.authService.authStatus === 'authenticated') {
+      await this.onLogin();
+    }
+  }
+
+  async onLogin(): Promise<void> {
+    try {
+      const loginId = await this.authService.user.signInDetails?.loginId;
+      this.authzResult = loginId?.substring(0, 2)?.toUpperCase() || '';
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Amplify } from 'aws-amplify';
 import awsconfig from '../../../aws-exports';
 import { AmplifyAuthenticatorModule} from '@aws-amplify/ui-angular';
+import { RootComponent } from '../root/root.component';
 import { HeaderComponent } from '../header/header.component';
 import { AddproductComponent } from '../addproduct/addproduct.component';
 import { FooterComponent } from '../footer/footer.component';
+import { ProductService } from '../../services/productServices';
+import { ProductDocuments} from '../../models/productDocuments';
 
 Amplify.configure(awsconfig);
 @Component({
@@ -15,18 +18,23 @@ Amplify.configure(awsconfig);
   templateUrl: './producers.component.html',
   styleUrl: './producers.component.css'
 })
-export class ProducersComponent {
+export class ProducersComponent implements OnInit {
 
-  displayAddNewProduct: boolean = false;
+  activateNewProductForm: boolean = false;
+  producerFetchResult: ProductDocuments[] = [];
 
-  constructor() {}
+  constructor(private productService: ProductService) {}
+  ngOnInit() {
+    this.productService.fetchResults$.subscribe(data => {
+      this.producerFetchResult = data;
+    });
+  }
 
   openAddNewProductForm(): void{
-    this.displayAddNewProduct = true;
+    this.activateNewProductForm = true;
   }
   closeAddProductForm(): void{
-    this.displayAddNewProduct = false;
-  
+    this.activateNewProductForm = false;
   }
 
 }
