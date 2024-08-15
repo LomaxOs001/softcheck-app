@@ -69,6 +69,8 @@ class AddproductComponent {
             
             this.productCreationResult = await crud.createProductItemInDDB(id, this.product, this.productPathInBucket)
 
+            //sleep for a moment to allow this process to complete
+
             this.producersComponent.closeAddProductForm();
           }
 

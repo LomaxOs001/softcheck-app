@@ -7,7 +7,6 @@ import { fetchAuthSession} from 'aws-amplify/auth';
 import { AuthenticatorService } from '@aws-amplify/ui-angular';
 import { MyLocalStorage } from '../../services/localStorageServices';
 import { CRUDOperations } from '../../models/CRUDOperations';
-import { ProducersComponent } from '../producers/producers.component';
 import { ProductService } from '../../services/productServices';
 import { ProductDocuments } from '../../models/productDocuments';
 
@@ -66,14 +65,14 @@ class RootComponent implements OnInit {
  
       id = this.authService.user.userId;
       const result = await this.crud.fetchProductItemsById(id); //fetch to return producers' data via GraphQL query
-      this.productService.updateFetchResultSource(result);
+      this.productService.updateFetchedProductData(result);
 
       console.log("Producer group type", result);
 
     } else if (groups.includes("consumers")) {
       
       const result = await this.crud.fetchProductItems(); //fetch to return consumers' data via GraphQL query
-      this.productService.updateFetchResultSource(result);
+      this.productService.updateFetchedProductData(result);
 
       console.log("Consumer group type", result);      
     } else {

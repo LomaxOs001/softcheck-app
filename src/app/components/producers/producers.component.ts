@@ -21,12 +21,20 @@ Amplify.configure(awsconfig);
 export class ProducersComponent implements OnInit {
 
   activateNewProductForm: boolean = false;
-  producerFetchResult: ProductDocuments[] = [];
+  productDocs: ProductDocuments[] = [];
+  productState: string = '';
 
   constructor(private productService: ProductService) {}
   ngOnInit() {
-    this.productService.fetchResults$.subscribe(data => {
-      this.producerFetchResult = data;
+    this.productService.fetchedProductsObservable.subscribe(data => {
+      this.productDocs = data;
+    });
+
+    this.productService.fetchvulnerabilityObservable.subscribe(data => {
+      if (data.valueOf() === false)
+        this.productState = 'failed';
+      else
+        this.productState = 'passed';
     });
   }
 

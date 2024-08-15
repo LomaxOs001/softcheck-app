@@ -81,6 +81,17 @@ class CRUDOperations {
     }
 
 //3. get vulnerability details of this product item
+    async fetchVulnerabilityDetails(id: string): Promise<any>{
+        try {
+            const result = await client.graphql({query: queries.getVulnerability, variables: {VulnerabilityId: id}});
+            console.log("Vulnerability details:",result.data.getVulnerability);
+
+            return result.data.getVulnerability?.IsVulnerable
+        }
+        catch (error) {
+            throw new Error("Error reading product items!");
+        }
+    }
 
 }
 
