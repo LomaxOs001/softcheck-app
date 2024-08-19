@@ -18,7 +18,7 @@
         <div class="truncate w-1/5 pl-2 py-3">{{ product.name }}</div>
         <div class="truncate w-3/5 pl-2 py-3">dfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsssssssssssssssssssssssssssss</div>
         <div class="truncate w-1/4 pl-2 py-3">{{ product.date }}</div>
-        <div class="w-1/6 pl-4 py-3"><span>{{ 'pass' || product.vulnerabilityState }}</span></div>
+        <div class="w-1/6 pl-4 py-3"><span>{{ productState }}</span></div>
         <div class="w-1/5 pl-4 py-3">{{ product.price | currency: 'EUR' }}</div>
       </div>
       <div class="flex space-x-2">
@@ -35,4 +35,4 @@
 </div>
 <amplify-authenticator [hideSignUp]="true" variation="modal"></amplify-authenticator>
 <app-addproduct *ngIf=activateNewProductForm></app-addproduct>
-<app-footer class="static w-full"></app-footer>
+<app-footer class="static left-0 bottom-0 w-full"></app-footer>

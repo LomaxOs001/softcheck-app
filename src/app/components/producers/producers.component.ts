@@ -30,6 +30,7 @@ export class ProducersComponent implements OnInit {
       this.productDocs = data;
     });
 
+    //fetch to return product's vulnerability state 
     this.productService.fetchvulnerabilityObservable.subscribe(data => {
       if (data.valueOf() === false)
         this.productState = 'failed';
