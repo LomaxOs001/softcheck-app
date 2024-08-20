@@ -2,7 +2,7 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-import * as APITypes from "../GraphqlAPI";
+import * as APITypes from "../graphqlAPI";
 type GeneratedMutation<InputType, OutputType> = string & {
   __generatedMutationInput: InputType;
   __generatedMutationOutput: OutputType;
@@ -19,7 +19,12 @@ export const createProduct = /* GraphQL */ `mutation CreateProduct(
     StateId
     Vulnerability {
       VulnerabilityId
-      IsVulnerable
+      Installed
+      Critical
+      High
+      Medium
+      Low
+      Unknown
       createdAt
       updatedAt
       _version
@@ -54,7 +59,12 @@ export const updateProduct = /* GraphQL */ `mutation UpdateProduct(
     StateId
     Vulnerability {
       VulnerabilityId
-      IsVulnerable
+      Installed
+      Critical
+      High
+      Medium
+      Low
+      Unknown
       createdAt
       updatedAt
       _version
@@ -89,7 +99,12 @@ export const deleteProduct = /* GraphQL */ `mutation DeleteProduct(
     StateId
     Vulnerability {
       VulnerabilityId
-      IsVulnerable
+      Installed
+      Critical
+      High
+      Medium
+      Low
+      Unknown
       createdAt
       updatedAt
       _version
@@ -119,7 +134,12 @@ export const createVulnerability = /* GraphQL */ `mutation CreateVulnerability(
 ) {
   createVulnerability(input: $input, condition: $condition) {
     VulnerabilityId
-    IsVulnerable
+    Installed
+    Critical
+    High
+    Medium
+    Low
+    Unknown
     createdAt
     updatedAt
     _version
@@ -139,7 +159,12 @@ export const updateVulnerability = /* GraphQL */ `mutation UpdateVulnerability(
 ) {
   updateVulnerability(input: $input, condition: $condition) {
     VulnerabilityId
-    IsVulnerable
+    Installed
+    Critical
+    High
+    Medium
+    Low
+    Unknown
     createdAt
     updatedAt
     _version
@@ -159,7 +184,12 @@ export const deleteVulnerability = /* GraphQL */ `mutation DeleteVulnerability(
 ) {
   deleteVulnerability(input: $input, condition: $condition) {
     VulnerabilityId
-    IsVulnerable
+    Installed
+    Critical
+    High
+    Medium
+    Low
+    Unknown
     createdAt
     updatedAt
     _version

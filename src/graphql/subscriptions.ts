@@ -2,7 +2,7 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-import * as APITypes from "../GraphqlAPI";
+import * as APITypes from "../graphqlAPI";
 type GeneratedSubscription<InputType, OutputType> = string & {
   __generatedSubscriptionInput: InputType;
   __generatedSubscriptionOutput: OutputType;
@@ -19,7 +19,12 @@ export const onCreateProduct = /* GraphQL */ `subscription OnCreateProduct(
     StateId
     Vulnerability {
       VulnerabilityId
-      IsVulnerable
+      Installed
+      Critical
+      High
+      Medium
+      Low
+      Unknown
       createdAt
       updatedAt
       _version
@@ -54,7 +59,12 @@ export const onUpdateProduct = /* GraphQL */ `subscription OnUpdateProduct(
     StateId
     Vulnerability {
       VulnerabilityId
-      IsVulnerable
+      Installed
+      Critical
+      High
+      Medium
+      Low
+      Unknown
       createdAt
       updatedAt
       _version
@@ -89,7 +99,12 @@ export const onDeleteProduct = /* GraphQL */ `subscription OnDeleteProduct(
     StateId
     Vulnerability {
       VulnerabilityId
-      IsVulnerable
+      Installed
+      Critical
+      High
+      Medium
+      Low
+      Unknown
       createdAt
       updatedAt
       _version
@@ -119,7 +134,12 @@ export const onCreateVulnerability = /* GraphQL */ `subscription OnCreateVulnera
 ) {
   onCreateVulnerability(filter: $filter, owner: $owner) {
     VulnerabilityId
-    IsVulnerable
+    Installed
+    Critical
+    High
+    Medium
+    Low
+    Unknown
     createdAt
     updatedAt
     _version
@@ -139,7 +159,12 @@ export const onUpdateVulnerability = /* GraphQL */ `subscription OnUpdateVulnera
 ) {
   onUpdateVulnerability(filter: $filter, owner: $owner) {
     VulnerabilityId
-    IsVulnerable
+    Installed
+    Critical
+    High
+    Medium
+    Low
+    Unknown
     createdAt
     updatedAt
     _version
@@ -159,7 +184,12 @@ export const onDeleteVulnerability = /* GraphQL */ `subscription OnDeleteVulnera
 ) {
   onDeleteVulnerability(filter: $filter, owner: $owner) {
     VulnerabilityId
-    IsVulnerable
+    Installed
+    Critical
+    High
+    Medium
+    Low
+    Unknown
     createdAt
     updatedAt
     _version

@@ -14,5 +14,10 @@ type Vulnerability
   @model
   @auth(rules: [{ allow: private, operations: [read] }, { allow: owner }]) {
   VulnerabilityId: ID! @primaryKey
-  IsVulnerable: Boolean!
+  Installed: Int!
+  Critical: Int!
+  High: Int!
+  Medium: Int!
+  Low: Int!
+  Unknown: Int!
 }

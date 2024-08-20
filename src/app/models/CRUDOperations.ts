@@ -86,7 +86,7 @@ class CRUDOperations {
             const result = await client.graphql({query: queries.getVulnerability, variables: {VulnerabilityId: id}});
             console.log("Vulnerability details:",result.data.getVulnerability);
 
-            return result.data.getVulnerability?.IsVulnerable
+            return result.data.getVulnerability
         }
         catch (error) {
             throw new Error("Error reading product items!");

@@ -50,7 +50,12 @@ type EagerVulnerability = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly VulnerabilityId: string;
-  readonly IsVulnerable: boolean;
+  readonly Installed: number;
+  readonly Critical: number;
+  readonly High: number;
+  readonly Medium: number;
+  readonly Low: number;
+  readonly Unknown: number;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -61,7 +66,12 @@ type LazyVulnerability = {
     readOnlyFields: 'createdAt' | 'updatedAt';
   };
   readonly VulnerabilityId: string;
-  readonly IsVulnerable: boolean;
+  readonly Installed: number;
+  readonly Critical: number;
+  readonly High: number;
+  readonly Medium: number;
+  readonly Low: number;
+  readonly Unknown: number;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }

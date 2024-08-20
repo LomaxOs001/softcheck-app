@@ -133,10 +133,45 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "IsVulnerable": {
-                    "name": "IsVulnerable",
+                "Installed": {
+                    "name": "Installed",
                     "isArray": false,
-                    "type": "Boolean",
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "Critical": {
+                    "name": "Critical",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "High": {
+                    "name": "High",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "Medium": {
+                    "name": "Medium",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "Low": {
+                    "name": "Low",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "Unknown": {
+                    "name": "Unknown",
+                    "isArray": false,
+                    "type": "Int",
                     "isRequired": true,
                     "attributes": []
                 },
@@ -203,5 +238,5 @@ export const schema = {
     "enums": {},
     "nonModels": {},
     "codegenVersion": "3.4.4",
-    "version": "015024950f1124e0d8093731a087a87f"
+    "version": "b7f5dd4037df99f6284eddd26c1e699c"
 };

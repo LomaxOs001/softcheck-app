@@ -81,11 +81,7 @@ def fetch_uploaded_product_from_s3(event):
 
                 logger.info(f"Object content in Byte: {objectContentInByte}")
 
-                objectContentInJsonString = json.loads(objectContentInByte.decode('utf-8'))
-
-                logger.info(f"Object content in String:{objectContentInJsonString}")
-
-                manage_temp_file(objectContentInJsonString)
+                manage_temp_file(objectContentInByte)
 
                 store_sbom_analysis_result(bucketObjectKey)
 
@@ -111,7 +107,7 @@ def manage_temp_file(file):
 
                 with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as temp_f:
 
-                        temp_f.write(json.dumps(file).encode('utf-8'))
+                        temp_f.write(file)
 
                         tempFile = temp_f.name
 
@@ -216,14 +212,24 @@ def create_vulnerability_item_in_ddb(vulnId, analysisResult):
                         TableName=Vulnerability,
                         Item={
                                 'VulnerabilityId': {'S': vulnId},
-                                'IsVulnerable': {'BOOL': analysisResult}
+                                'Installed': {'N': "50"},
+                                'Critical': {'N': "0"},
+                                'High': {'N': "0"},
+                                'Medium': {'N': "0"},
+                                'Low': {'N': "0"},
+                                'Unknown': {'N': "0"}
                         }
                 )
-                
+ 
                 print(f"Vulnerability item created in DDB: {vulnId}")
 
         except Exception as e:
                 logger.error(f"Error occurred when creating vulnerability item in DDB: {str(e)}")
+                
+def get_product_vulnerability_state_result(vulnerabilityAnalysisResult):
+        
+        
+        
 
 def update_product_state_item_in_ddb(productId, productName, vulnId):
 
