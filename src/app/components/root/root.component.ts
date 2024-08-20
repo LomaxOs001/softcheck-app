@@ -65,14 +65,14 @@ class RootComponent implements OnInit {
  
       id = this.authService.user.userId;
       const result = await this.crud.fetchProductItemsById(id); //fetch to return producers' data via GraphQL query
-      this.productService.updateFetchedProductData(result);
+      this.productService.updateFetchedProductDocuments(result);
 
       console.log("Producer group type", result);
 
     } else if (groups.includes("consumers")) {
       
       const result = await this.crud.fetchProductItems(); //fetch to return consumers' data via GraphQL query
-      this.productService.updateFetchedProductData(result);
+      this.productService.updateFetchedProductDocuments(result);
 
       console.log("Consumer group type", result);      
     } else {

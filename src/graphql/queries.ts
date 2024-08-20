@@ -2,7 +2,7 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-import * as APITypes from "../graphqlAPI";
+import * as APITypes from "../GraphqlAPI";
 type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryInput: InputType;
   __generatedQueryOutput: OutputType;
@@ -85,6 +85,7 @@ export const listProducts = /* GraphQL */ `query ListProducts(
   APITypes.ListProductsQueryVariables,
   APITypes.ListProductsQuery
 >;
+
 export const customListProducts = /* GraphQL */ `query CustomListProducts(
   $ProductId: ID
   $Name: ModelStringKeyConditionInput
@@ -177,6 +178,21 @@ export const getVulnerability = /* GraphQL */ `query GetVulnerability($Vulnerabi
   APITypes.GetVulnerabilityQueryVariables,
   APITypes.GetVulnerabilityQuery
 >;
+export const customeGetVulnerability = /* GraphQL */ `query customeGetVulnerability($VulnerabilityId: ID!) {
+  getVulnerability(VulnerabilityId: $VulnerabilityId) {
+    VulnerabilityId
+    Installed
+    Critical
+    High
+    Medium
+    Low
+    Unknown
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetVulnerabilityQueryVariables,
+  APITypes.GetVulnerabilityQuery
+>;
 export const listVulnerabilities = /* GraphQL */ `query ListVulnerabilities(
   $VulnerabilityId: ID
   $filter: ModelVulnerabilityFilterInput
@@ -216,6 +232,8 @@ export const listVulnerabilities = /* GraphQL */ `query ListVulnerabilities(
   APITypes.ListVulnerabilitiesQueryVariables,
   APITypes.ListVulnerabilitiesQuery
 >;
+
+
 export const syncVulnerabilities = /* GraphQL */ `query SyncVulnerabilities(
   $filter: ModelVulnerabilityFilterInput
   $limit: Int

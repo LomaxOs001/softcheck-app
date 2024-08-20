@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ProductDocuments } from '../models/productDocuments';
+import { VulnerabilityDocuments } from '../models/vulnerabilityDocuments';
 
 @Injectable({
     providedIn: 'root',
@@ -8,18 +9,18 @@ import { ProductDocuments } from '../models/productDocuments';
 
 class ProductService {
 
-    private fetchedProductDocuments = new BehaviorSubject<ProductDocuments[]>([]);
-    private fetchedVulnerabilityData = new BehaviorSubject<boolean>(false);
+    private productDetails = new BehaviorSubject<ProductDocuments[]>([]);
+    private vulnerabilityDetails = new BehaviorSubject<VulnerabilityDocuments[]>([]);
 
-    fetchedProductsObservable = this.fetchedProductDocuments.asObservable();
-    fetchvulnerabilityObservable = this.fetchedVulnerabilityData.asObservable();
+    observeFetchedProductDocuments = this.productDetails.asObservable();
+    observeFetchedVulnerableDocuments = this.vulnerabilityDetails.asObservable();
 
-    updateFetchedProductData(data: ProductDocuments[]) {
-        this.fetchedProductDocuments.next(data);
+    updateFetchedProductDocuments(data: ProductDocuments[]) {
+        this.productDetails.next(data);
       }
       
-    updateFetchedVulnerabilityData(data: boolean) {
-        this.fetchedVulnerabilityData.next(data);
+    updateFetchedVulnerabilityDocuments(data: VulnerabilityDocuments[]) {
+        this.vulnerabilityDetails.next(data);
     }
 
 }

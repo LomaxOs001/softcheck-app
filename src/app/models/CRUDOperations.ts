@@ -6,6 +6,8 @@ import { createProduct } from '../../graphql/mutations';
 import * as queries from '../../graphql/queries';
 import { generateClient } from '@aws-amplify/api';
 import { ProductDocuments } from './productDocuments';
+import { VulnerabilityDocuments } from './vulnerabilityDocuments';
+import { Vulnerability } from '../../models';
 
 const client = generateClient();
 
@@ -34,7 +36,7 @@ class CRUDOperations {
             });
             return "Product " + result.data.createProduct.Name + " is created successfully!";
         }catch (error) {
-            //console.error("Error creating product", error);
+            console.error("Error creating product", error);
             throw new Error("Error creating product item in CRUD operations!");
         }
     }
@@ -81,12 +83,27 @@ class CRUDOperations {
     }
 
 //3. get vulnerability details of this product item
-    async fetchVulnerabilityDetails(id: string): Promise<any>{
+    async fetchVulnerabilityDetails(id: string): Promise<VulnerabilityDocuments[]>{
+
+        let severityList: VulnerabilityDocuments[] = [];
         try {
-            const result = await client.graphql({query: queries.getVulnerability, variables: {VulnerabilityId: id}});
+            const result = await client.graphql({query: queries.customeGetVulnerability, variables: {VulnerabilityId: id}});
             console.log("Vulnerability details:",result.data.getVulnerability);
 
-            return result.data.getVulnerability
+            if (result.data.getVulnerability) {
+                severityList.push({
+                    Installed: result.data.getVulnerability.Installed,
+                    Critical: result.data.getVulnerability.Critical,
+                    High: result.data.getVulnerability.High,
+                    Medium: result.data.getVulnerability.Medium,
+                    Low: result.data.getVulnerability.Low,
+                    Unknown: result.data.getVulnerability.Unknown,
+                });
+            }
+            else
+                console.error("Unable to find vulnerability information")
+
+            return severityList
         }
         catch (error) {
             throw new Error("Error reading product items!");

@@ -38,7 +38,7 @@ class AddproductComponent {
   constructor(public producersComponent: ProducersComponent, private authService: AuthenticatorService, private router: Router) {}
 
 
-  async onArtifactInput(event: Event): Promise<void> {
+  async onProductInput(event: Event): Promise<void> {
     const fileInput= event.target as HTMLInputElement;
     const fileItem = fileInput.files?.[0];
 

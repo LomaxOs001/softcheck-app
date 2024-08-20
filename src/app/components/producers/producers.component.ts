@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Amplify } from 'aws-amplify';
 import awsconfig from '../../../aws-exports';
 import { AmplifyAuthenticatorModule} from '@aws-amplify/ui-angular';
-import { RootComponent } from '../root/root.component';
 import { HeaderComponent } from '../header/header.component';
 import { AddproductComponent } from '../addproduct/addproduct.component';
 import { FooterComponent } from '../footer/footer.component';
 import { ProductService } from '../../services/productServices';
 import { ProductDocuments} from '../../models/productDocuments';
+import { VulnerabilityDocuments } from '../../models/vulnerabilityDocuments';
 
 Amplify.configure(awsconfig);
 @Component({
@@ -20,30 +20,28 @@ Amplify.configure(awsconfig);
 })
 export class ProducersComponent implements OnInit {
 
-  activateNewProductForm: boolean = false;
+  displayNewProductForm: boolean = false;
   productDocs: ProductDocuments[] = [];
-  productState: string = '';
+  productVulnerabilityState: VulnerabilityDocuments[] = [];
+  hovered: boolean = false;
 
   constructor(private productService: ProductService) {}
   ngOnInit() {
-    this.productService.fetchedProductsObservable.subscribe(data => {
+    this.productService.observeFetchedProductDocuments.subscribe(data => {
       this.productDocs = data;
     });
 
     //fetch to return product's vulnerability state 
-    this.productService.fetchvulnerabilityObservable.subscribe(data => {
-      if (data.valueOf() === false)
-        this.productState = 'failed';
-      else
-        this.productState = 'passed';
+    this.productService.observeFetchedVulnerableDocuments.subscribe(data => {
+      this.productVulnerabilityState = data
     });
   }
 
-  openAddNewProductForm(): void{
-    this.activateNewProductForm = true;
+  openAddProductForm(): void{
+    this.displayNewProductForm = true;
   }
   closeAddProductForm(): void{
-    this.activateNewProductForm = false;
+    this.displayNewProductForm = false;
   }
 
 }

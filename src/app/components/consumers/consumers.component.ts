@@ -23,7 +23,7 @@ export class ConsumersComponent {
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
-    this.productService.fetchedProductsObservable.subscribe(data => {
+    this.productService.observeFetchedProductDocuments.subscribe(data => {
       this.consumerFetchResult = data;
     });
   }

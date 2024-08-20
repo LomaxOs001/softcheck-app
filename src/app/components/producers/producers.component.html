@@ -18,7 +18,28 @@
         <div class="truncate w-1/5 pl-2 py-3">{{ product.name }}</div>
         <div class="truncate w-3/5 pl-2 py-3">dfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsssssssssssssssssssssssssssss</div>
         <div class="truncate w-1/4 pl-2 py-3">{{ product.date }}</div>
-        <div class="w-1/6 pl-4 py-3"><span>{{ productState }}</span></div>
+
+        <div class="severity-parent-div border border-black" (mouseover)="hovered = true" (mouseout)="hovered = false">
+  
+    
+          <div class="w-1/6 pl-4 py-3" >
+            <span>severity..</span>
+          </div>
+        
+          <!-- ngFor loop for the severity details -->
+          <div *ngFor="let severity of productVulnerabilityState" class="severity-details">
+            <div class="border border-black ">
+              <div>Installed packages: {{ severity.Installed }}</div>
+              <div>Critical: {{ severity.Critical }}</div>
+              <div>High: {{ severity.High }}</div>
+              <div>Medium: {{ severity.Medium }}</div>
+              <div>Low: {{ severity.Low }}</div>
+              <div>Unknown: {{ severity.Unknown }}</div>
+            </div>
+          </div>
+        
+        </div>
+
         <div class="w-1/5 pl-4 py-3">{{ product.price | currency: 'EUR' }}</div>
       </div>
       <div class="flex space-x-2">
@@ -28,11 +49,11 @@
     </div>
   </div>
 
-  <button class="button ml-auto flex items-center bg-cyan-900 text-white px-4 py-2 w-48 h-12 mb-2 mt-2 rounded-full" (click)="openAddNewProductForm()">
+  <button class="button ml-auto flex items-center bg-cyan-900 text-white px-4 py-2 w-48 h-12 mb-2 mt-2 rounded-full" (click)="openAddProductForm()">
     Add Product
     <div class="icon material-symbols-outlined flex items-center justify-center absolute right-0 rounded-full px-3 p-2 h-12 bg-cyan-900 text-white-500 border-5 border-white">add</div>
   </button>
 </div>
 <amplify-authenticator [hideSignUp]="true" variation="modal"></amplify-authenticator>
-<app-addproduct *ngIf=activateNewProductForm></app-addproduct>
+<app-addproduct *ngIf=displayNewProductForm></app-addproduct>
 <app-footer class="static left-0 bottom-0 w-full"></app-footer>
