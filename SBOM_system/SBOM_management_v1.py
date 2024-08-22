@@ -226,7 +226,7 @@ def create_vulnerability_item_in_ddb(vulnId, analysisResult):
         except Exception as e:
                 logger.error(f"Error occurred when creating vulnerability item in DDB: {str(e)}")
                 
-def get_product_vulnerability_state_result(vulnerabilityAnalysisResult):
+#def get_product_vulnerability_state_result(vulnerabilityAnalysisResult):
         
         
         

@@ -20,9 +20,7 @@ Amplify.configure(awsconfig);
 
 class RootComponent implements OnInit { 
 
-  crud = new CRUDOperations();
-  producerFetchResult: ProductDocuments[] = [];
-  consumerFetchResult: ProductDocuments[] = [];
+  private crud = new CRUDOperations();
 
   constructor(private router: Router, private session: MyLocalStorage, private authService: AuthenticatorService, private productService: ProductService) {}
 
@@ -65,14 +63,14 @@ class RootComponent implements OnInit {
  
       id = this.authService.user.userId;
       const result = await this.crud.fetchProductItemsById(id); //fetch to return producers' data via GraphQL query
-      this.productService.updateFetchedProductDocuments(result);
+      this.productService.updateProductDocumentService(result);
 
       console.log("Producer group type", result);
 
     } else if (groups.includes("consumers")) {
       
       const result = await this.crud.fetchProductItems(); //fetch to return consumers' data via GraphQL query
-      this.productService.updateFetchedProductDocuments(result);
+      this.productService.updateProductDocumentService(result);
 
       console.log("Consumer group type", result);      
     } else {

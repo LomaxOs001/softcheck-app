@@ -20,3 +20,10 @@
 .product-detail-box button:hover {
     background-image: linear-gradient(to right, #245f86, #78cbfc);
   }
+
+
+.severity-details span:hover{
+    color: #0488e0;
+    cursor: pointer;
+    background-image: linear-gradient(to right, #245f86, #78cbfc);
+}

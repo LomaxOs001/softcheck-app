@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ProductDocuments } from '../models/productDocuments';
 import { VulnerabilityDocuments } from '../models/vulnerabilityDocuments';
+import { CRUDOperations } from '../models/CRUDOperations';
 
 @Injectable({
     providedIn: 'root',
@@ -9,19 +10,33 @@ import { VulnerabilityDocuments } from '../models/vulnerabilityDocuments';
 
 class ProductService {
 
+    private crud = new CRUDOperations();
     private productDetails = new BehaviorSubject<ProductDocuments[]>([]);
     private vulnerabilityDetails = new BehaviorSubject<VulnerabilityDocuments[]>([]);
-
+    showQualitativeRepresentation = false;
+    
     observeFetchedProductDocuments = this.productDetails.asObservable();
-    observeFetchedVulnerableDocuments = this.vulnerabilityDetails.asObservable();
+    observeFetchedVulnerabilityDocuments = this.vulnerabilityDetails.asObservable();
 
-    updateFetchedProductDocuments(data: ProductDocuments[]) {
+    updateProductDocumentService(data: ProductDocuments[]) {
         this.productDetails.next(data);
       }
       
-    updateFetchedVulnerabilityDocuments(data: VulnerabilityDocuments[]) {
+    
+    async fetchVulnerabilityDocumentService(stateId: string) {
+        const severityList = await this.crud.fetchVulnerabilityDetails(stateId);
+        this.updateVulnerabilityDocumentService(severityList);
+        this.showQualitativeRepresentation = true;
+    }
+
+    private updateVulnerabilityDocumentService(data: VulnerabilityDocuments[]) {
         this.vulnerabilityDetails.next(data);
     }
+    closeQualitativeRepresentationModal() {
+        this.showQualitativeRepresentation = false; 
+      }
+
+
 
 }
 export { ProductService };

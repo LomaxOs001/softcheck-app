@@ -15,7 +15,7 @@ Amplify.configure(awsconfig);
 @Component({
   selector: 'app-addproduct',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, ProducersComponent, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './addproduct.component.html',
   styleUrl: './addproduct.component.css'
 })
@@ -24,6 +24,7 @@ Amplify.configure(awsconfig);
 class AddproductComponent {
 
   activateProceedBtn: boolean = false;
+  showQualitativeRepresentation = false;
   productPathInBucket: string = '';
   productCreationResult: string = '';
   product: ProductType = {
@@ -38,7 +39,7 @@ class AddproductComponent {
   constructor(public producersComponent: ProducersComponent, private authService: AuthenticatorService, private router: Router) {}
 
 
-  async onProductInput(event: Event): Promise<void> {
+  async handleProductInput(event: Event): Promise<void> {
     const fileInput= event.target as HTMLInputElement;
     const fileItem = fileInput.files?.[0];
 
@@ -49,7 +50,7 @@ class AddproductComponent {
       
   }
     
-  async onSubmitProductDetails() {
+  async submitProductDetails() {
 
     if (this.validateProductDetails(this.product)) {
 
@@ -57,7 +58,7 @@ class AddproductComponent {
       const crud = new CRUDOperations();
       let id = '';
 
-      if (this.validateArtifactExtensionType(this.product.data.name)){
+      if (this.validateArtifactExtensionType(this.product.data.name)) {
 
         try {
 
@@ -71,7 +72,7 @@ class AddproductComponent {
 
             //sleep for a moment to allow this process to complete
 
-            this.producersComponent.closeAddProductForm();
+            this.producersComponent.closeAddProductModal();
           }
 
         }catch (error) {

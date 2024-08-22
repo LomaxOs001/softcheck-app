@@ -1,7 +1,7 @@
 <div class="flex flex-row h-48 left-0 top-0 max-w-full p-20 bg-gradient-to-r from-green-200 to-blue-300">
     <app-header class="pb-6 mb-12 flex flex-row"></app-header>
 </div>
-<div class="flex flex-column mt-5 ml-2 mr-2 mb-5 static ">
+<div class="flex flex-column mt-5 ml-2 mr-2 mb-5 static max-w-full mx-auto">
     <div class="flex flex-row flex-1 w-full bg-gray-200 mb-2 justify-evenly rounded-md">
       <div class="w-1/6 pl-4 ">Name</div>
       <div class="w-1/2 pl-9">Description</div>
@@ -9,23 +9,27 @@
       <div class="w-1/6 pl-3">Severity</div>
       <div class="w-1/6">Price</div>
     </div>
-    <div *ngFor="let product of consumerFetchResult">
-      <div class="product-detail-box flex flex-row items-center justify-evenly mb-2 font-semibold static">
-        <div class="flex flex-1 flex-row w-full">
+    <div *ngFor="let product of consumerDocs">
+      <div class="product-detail-box flex flex-row items-center mb-2 font-semibold max-w-max">
+        <div class="flex flex-row w-full">
           <div class="product-img ">
             <img src="../../../assets/images/org0.jpg" class="border border-black" alt="Product Image"> 
           </div>
-          <div class="truncate w-1/5 pl-2 py-3">{{ product.name }}</div>
-          <div class="truncate w-3/5 pl-2 py-3">dfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsfsssssssssssssssssssssssssssss</div>
-          <div class="truncate w-1/4 pl-2 py-3">{{ product.date }}</div>
-          <div class="w-1/6 pl-4 py-3"><span>{{ 'pass' || product.vulnerabilityState }}</span></div>
-          <div class="w-1/5 pl-4 py-3">{{ product.price | currency: 'EUR' }}</div>
-        </div>
-        <div class="flex space-x-2">
+          <div class="truncate w-1/6 pl-2 py-3">{{ product.name }}</div>
+          <div class="truncate w-1/2 py-3 pr-4">{{product.description}}</div>
+          <div class="truncate w-1/6 pl-3 py-3">{{ product.date | date: 'MMMM d, y'}}</div>
+          <div class="severity-details pl-10 py-3 w-1/6" >
+            <span (click)="fetchSeverityDetails(product.vulnerabilityState)" class="bg-cyan-700 text-white p-1 rounded-full">Check Severity...</span> <!---vulnerabilityState-->
+          </div>
+          <div class="w-1/6 pl-4 py-3">{{ product.price | currency: 'EUR' }}</div>
+        
+        <div class="pt-2">
           <button class="btn btn-primary">Visit</button>
         </div>
+      </div>
       </div>
     </div>
     </div>
 <amplify-authenticator [hideSignUp]="true" variation="modal"></amplify-authenticator>
-<app-footer class="static w-full"></app-footer>
+<app-severity [severityVisible]="productService.showQualitativeRepresentation" (close)="productService.closeQualitativeRepresentationModal()"></app-severity>
+<app-footer class="absolute left-0 bottom-0 w-full"></app-footer>

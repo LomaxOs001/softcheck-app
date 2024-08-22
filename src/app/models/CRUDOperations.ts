@@ -106,6 +106,7 @@ class CRUDOperations {
             return severityList
         }
         catch (error) {
+            console.error("Unable to find vulnerability information", error);
             throw new Error("Error reading product items!");
         }
     }

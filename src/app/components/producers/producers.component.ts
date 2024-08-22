@@ -9,39 +9,41 @@ import { FooterComponent } from '../footer/footer.component';
 import { ProductService } from '../../services/productServices';
 import { ProductDocuments} from '../../models/productDocuments';
 import { VulnerabilityDocuments } from '../../models/vulnerabilityDocuments';
+import { SeverityComponent } from '../severity/severity.component';
 
 Amplify.configure(awsconfig);
 @Component({
   selector: 'app-producers',
   standalone: true,
-  imports: [CommonModule, AmplifyAuthenticatorModule, HeaderComponent, AddproductComponent, FooterComponent],
+  imports: [CommonModule, AmplifyAuthenticatorModule, HeaderComponent, AddproductComponent, SeverityComponent, FooterComponent],
   templateUrl: './producers.component.html',
   styleUrl: './producers.component.css'
 })
 export class ProducersComponent implements OnInit {
 
-  displayNewProductForm: boolean = false;
+  addProductVisible: boolean = false;
   productDocs: ProductDocuments[] = [];
   productVulnerabilityState: VulnerabilityDocuments[] = [];
-  hovered: boolean = false;
 
-  constructor(private productService: ProductService) {}
+  constructor(public productService: ProductService) {}
+
   ngOnInit() {
     this.productService.observeFetchedProductDocuments.subscribe(data => {
       this.productDocs = data;
     });
 
-    //fetch to return product's vulnerability state 
-    this.productService.observeFetchedVulnerableDocuments.subscribe(data => {
-      this.productVulnerabilityState = data
-    });
   }
 
-  openAddProductForm(): void{
-    this.displayNewProductForm = true;
+  openAddProductModal() {
+    this.addProductVisible = true;
   }
-  closeAddProductForm(): void{
-    this.displayNewProductForm = false;
+  closeAddProductModal() {
+    this.addProductVisible = false;
+  }
+
+  //fetch to return product's vulnerability state 
+  fetchSeverityDetails(stateId: string) {
+    this.productService.fetchVulnerabilityDocumentService(stateId);
   }
 
 }
