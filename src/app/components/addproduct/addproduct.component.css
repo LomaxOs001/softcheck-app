@@ -35,12 +35,14 @@
 .file-input {
     color:transparent;
     width:25%;
+    text-align: center;
+    width: 13%;
 }
 .file-input::-webkit-file-upload-button {
     visibility: hidden;
 }
 .file-input::before {
-    content: 'clicking here';
+    content: 'Click here..';
     color:blue;
     cursor:pointer;
     font-weight: 600;
