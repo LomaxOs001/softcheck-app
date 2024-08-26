@@ -19,8 +19,9 @@
           <div class="truncate w-1/2 py-3 pr-4">{{product.description}}</div>
           <div class="truncate w-1/6 pl-3 py-3">{{ product.date | date: 'MMMM d, y'}}</div>
           <div class="severity-details pl-10 py-3 w-1/6" >
-            <span (click)="fetchSeverityDetails(product.vulnerabilityState)" class="bg-cyan-700 text-white p-1 rounded-full">Check Severity...</span> <!---vulnerabilityState-->
+            <span (click)="fetchSeverityDetails(product.vulnerabilityState)" class="bg-cyan-700 text-white p-1 rounded-full">Severity...</span> <!---vulnerabilityState-->
           </div>
+          
           <div class="w-1/6 pl-4 py-3">{{ product.price | currency: 'EUR' }}</div>
         
         <div class="pt-2">
