@@ -1,21 +1,21 @@
 
 <div class="form-modal border border-black bg-gray-900 max-w-full max-h-full z-1 top-0 left-0 bottom-0 right-0 fixed flex justify-center" *ngIf="severityVisible">
-    <div class="form-modal-content border border-white w-1/2 h-1/6 my-56 text-white flex flex-col">
+    <div class="form-modal-content border border-white w-1/2 h-1/6 my-56 text-white flex flex-col static">
         <div class="flex justify-end mb-1">
             <span class="material-symbols-outlined form-modal-close" (click)="closeQualitativeRepresentationModal()">
                 close
             </span>
         </div>
-
-        <table class="table-auto border-collapse border border-black h-72 w-full text-center">
-            <thead>
-              <tr >
+        <div class="flex h-72 max-w-full overflow-x-auto">
+          <table class="table-auto border-collapse border border-black text-center text-sm">
+            <thead >
+              <tr>
                 <th class="border border-black px-4 py-2 text-black bg-yellow-50">Installed Packages</th>
                 <th class="border border-black px-4 py-2 bg-red-900">Critical</th>
-                <th class="border border-black px-4 py-2 bg-amber-800">High</th>
-                <th class="border border-black px-4 py-2 bg-yellow-700">Medium</th>
-                <th class="border border-black px-4 py-2 bg-yellow-500">Low</th>
-                <th class="border border-black px-4 py-2 text-black bg-yellow-50">Unknown</th>
+                <th class="border border-black px-4 py-2 bg-amber-800 ">High</th>
+                <th class="border border-black px-4 py-2 bg-yellow-700 ">Medium</th>
+                <th class="border border-black px-4 py-2 bg-yellow-500 ">Low</th>
+                <th class="border border-black px-4 py-2 text-black bg-yellow-50 ">Unknown</th>
               </tr>
             </thead>
             <tbody>
@@ -29,6 +29,8 @@
               </tr>
             </tbody>
           </table>
+        </div>
+        
     </div>
     
 </div>
