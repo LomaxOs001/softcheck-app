@@ -1,0 +1,40 @@
+<div class="form-modal border border-black bg-gray-900 max-w-full max-h-full z-1 top-0 left-0 bottom-0 right-0 fixed flex justify-center">
+    
+    <div class="form-modal-content border border-white w-3/5 h-3/5 my-40 p-3 text-white">
+        <div class="flex justify-end mb-1">
+            <span class="material-symbols-outlined form-modal-close" (click)="producersComponent.closeAddProductModal()">
+                close
+                </span>
+        </div>
+        
+        <form class="form-horizontal rounded p-8 bg-white flex flex-col space-y-4" name="form"
+        (ngSubmit)="f.form.valid && submitProductDetails()" #f="ngForm">
+
+            <div class="border border-black">
+                <input type="text" name="name" placeholder="Enter product name" #name="ngModel" [(ngModel)]="product.name" required>
+            </div>
+
+            <div class="border border-black">
+                <textarea name="description" placeholder="Describe product here..." #description="ngModel" [(ngModel)]="product.description" required></textarea>
+            </div>
+
+            <div class="border border-black">
+                <input type="number" name="price" placeholder="Enter product price" #price="ngModel" [(ngModel)]="product.price" required>
+            </div>
+
+            <div class="upload-box p-3 border border-black text-black">
+                <div class="upload-header flex justify-center w-9 h-9 pt-1 rounded-full bg-purple-100">
+                    <span class="material-symbols-outlined text-blue-600">cloud_upload</span>
+                </div>
+                <h3 class="font-semibold mt-3 mb-2">Upload a file</h3>
+                <div class="upload-box-space flex justify-center border-dashed border-2 border-gray-300">
+                    <input type="file" name="file" class="file-input" (change)="handleProductInput($event)">
+                </div>
+                
+            </div>
+            <button type="submit" class="btn btn-primary" [disabled]="!activateProceedBtn || name.errors || description.errors || price.errors">Proceed</button>
+            <!--<div *ngIf="inProgress" class="text-black">Upload progress: {{ progress }}%</div>-->
+        </form>
+    </div>
+
+</div>

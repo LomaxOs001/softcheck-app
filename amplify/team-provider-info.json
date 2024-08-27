@@ -1,24 +1,40 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-finchainwebapp-dev-f065c-authRole",
-      "UnauthRoleArn": "arn:aws:iam::845066651024:role/amplify-finchainwebapp-dev-f065c-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::845066651024:role/amplify-finchainwebapp-dev-f065c-authRole",
+      "AuthRoleName": "amplify-supchainsecure-dev-d8d49-authRole",
+      "UnauthRoleArn": "arn:aws:iam::891377160116:role/amplify-supchainsecure-dev-d8d49-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::891377160116:role/amplify-supchainsecure-dev-d8d49-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-finchainwebapp-dev-f065c-deployment",
-      "UnauthRoleName": "amplify-finchainwebapp-dev-f065c-unauthRole",
-      "StackName": "amplify-finchainwebapp-dev-f065c",
-      "StackId": "arn:aws:cloudformation:us-east-1:845066651024:stack/amplify-finchainwebapp-dev-f065c/349fe1b0-f694-11ee-a82f-0affc319aef3",
-      "AmplifyAppId": "doxeiruimiiuh"
+      "DeploymentBucketName": "amplify-supchainsecure-dev-d8d49-deployment",
+      "UnauthRoleName": "amplify-supchainsecure-dev-d8d49-unauthRole",
+      "StackName": "amplify-supchainsecure-dev-d8d49",
+      "StackId": "arn:aws:cloudformation:us-east-1:891377160116:stack/amplify-supchainsecure-dev-d8d49/71fedfa0-3d0e-11ef-96e3-0ebdcbb00551",
+      "AmplifyAppId": "d1gth8qi3c9w3f"
     },
     "categories": {
       "auth": {
-        "finchainwebappf739e5e9": {
-          "userPoolId": "us-east-1_6disTWxvp",
-          "userPoolName": "finchain-cloud-app",
-          "webClientId": "6hu9l4m2d0ddvg4kvo2s28dsj3",
-          "nativeClientId": "6hu9l4m2d0ddvg4kvo2s28dsj3"
+        "supchainsecure9ec57cd2": {
+          "userPoolId": "us-east-1_6RWWnPWm1",
+          "userPoolName": "softcheck_user_pool01",
+          "webClientId": "1djgt7pv9thh28crk6jrrlrb1e",
+          "nativeClientId": "1eppbn7tq68775ji7d4fimdnov",
+          "identityPoolId": "us-east-1:ddd86bc9-6fd1-4d6d-9ec3-8a5f6c4b888f",
+          "identityPoolName": "softcheck_identity_pool001",
+          "allowUnauthenticatedIdentities": true,
+          "authRoleArn": "arn:aws:iam::891377160116:role/service-role/softcheck_identitypool_iam_role_auth",
+          "authRoleName": "softcheck_identitypool_iam_role_auth",
+          "unauthRoleArn": "arn:aws:iam::891377160116:role/service-role/softcheck_identitypool_iam_role_unauth",
+          "unauthRoleName": "softcheck_identitypool_iam_role_unauth"
         }
+      },
+      "storage": {
+        "supchainsecure2a07a334": {
+          "bucketName": "softcheck-s3-bucket-001",
+          "region": "us-east-1"
+        }
+      },
+      "api": {
+        "softcheckgraphapiapi001yo": {}
       }
     }
   }

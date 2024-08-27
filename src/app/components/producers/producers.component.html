@@ -1,0 +1,45 @@
+<div class="flex flex-row h-48 left-0 top-0 max-w-full p-20 bg-gradient-to-r from-green-200 to-blue-300">
+    <app-header class="pb-6 mb-12 flex flex-row"></app-header>
+</div>
+<div class="flex flex-column mt-5 ml-2 mr-2 mb-5 static ">
+  <div class="bg-gray-200 w-full mb-2">
+    <div class="flex flex-row flex-1 w-11/12 justify-evenly rounded-md">
+      <div class="w-1/6 pl-4 ">Name</div>
+      <div class="w-1/2 pl-9">Description</div>
+      <div class="w-1/6">Created</div>
+      <div class="w-1/6 pl-3">Severity</div>
+      <div class="w-1/6">Price</div>
+    </div>
+  </div>
+  
+  <div *ngFor="let product of productDocs">
+    <div class="product-detail-box flex flex-row items-center mb-2 font-semibold max-w-max">
+      <div class="flex flex-row w-full">
+        <div class="product-img ">
+          <img src="../../../assets/images/org0.jpg" class="border border-black" alt="Product Image"> 
+        </div>
+        <div class="truncate w-1/6 pl-2 py-3">{{ product.name }}</div>
+        <div class="truncate w-1/2 py-3 pr-4">{{product.description}}</div>
+        <div class="truncate w-1/6 pl-3 py-3">{{ product.date | date: 'MMMM d, y'}}</div>
+        <div class="severity-details pl-10 py-3 w-1/6" >
+          <span (click)="fetchSeverityDetails(product.vulnerabilityState)" class="bg-cyan-700 text-white p-1 rounded-full">Severity...</span> <!---vulnerabilityState-->
+        </div>
+        <div class="w-1/6 pl-8 py-3">{{ product.price | currency: 'EUR' }}</div>
+        
+        <div class="flex space-x-2 h-9 mt-2">
+          <button class="btn btn-primary">Update</button>
+          <button class="btn btn-primary">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="button ml-auto flex items-center bg-cyan-900 text-white px-4 py-2 w-48 h-12 mb-2 mt-2 rounded-full" (click)="openAddProductModal()">
+    Add Product
+    <div class="icon material-symbols-outlined flex items-center justify-center absolute right-0 rounded-full px-3 p-2 h-12 bg-cyan-900 text-white-500 border-5 border-white">add</div>
+  </button>
+</div>
+<amplify-authenticator [hideSignUp]="true" variation="modal"></amplify-authenticator>
+<app-addproduct *ngIf=addProductVisible></app-addproduct>
+<app-severity [severityVisible]="productService.showQualitativeRepresentation" (close)="productService.closeQualitativeRepresentationModal()"></app-severity>
+<app-footer class="absolute left-0 bottom-0 w-full"></app-footer>

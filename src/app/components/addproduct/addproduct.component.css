@@ -1,0 +1,60 @@
+.form-modal {
+    background-color: rgba(0,0,0,.5);
+}
+
+.form-horizontal input[type="text"], textarea, [type="number"] {
+    color:black;
+    width: 100%;
+}
+.form-horizontal input[type="text"]:focus, textarea:focus, [type="number"]:focus {
+    border-color: #3498db; 
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    border:black;
+}
+.form-modal-close:hover {
+    cursor: pointer;
+    color:black;
+    background-color: rgb(250, 197, 197);
+    border-radius: 9999px;
+
+}
+.form-horizontal input[type="text"], [type="number"] {
+    height:2.5rem;
+}
+.form-horizontal textarea {
+    height:7rem;
+}
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 40
+  }
+
+.file-input {
+    color:transparent;
+    width:25%;
+    text-align: center;
+    width: 13%;
+}
+.file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+.file-input::before {
+    content: 'Click here..';
+    color:blue;
+    cursor:pointer;
+    font-weight: 600;
+}
+.file-input:hover::before {
+    text-decoration: underline;
+}
+
+.form-horizontal button{
+    background-color: #43a4e6;
+    border-radius: 9999px;
+}
+.form-horizontal button:hover {
+    background-image: linear-gradient(to right, #245f86, #78cbfc);
+  }

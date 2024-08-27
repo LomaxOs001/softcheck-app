@@ -1,0 +1,23 @@
+type Product
+  @model
+  @auth(rules: [{ allow: private, operations: [read] }, { allow: owner }]) {
+  ProductId: ID! @primaryKey(sortKeyFields: ["Name"])
+  Name: String!
+  Description: String!
+  StateId: ID
+  Vulnerability: Vulnerability @hasOne(fields: ["StateId"])
+  Price: Int!
+  ProductKey: String!
+}
+
+type Vulnerability
+  @model
+  @auth(rules: [{ allow: private, operations: [read] }, { allow: owner }]) {
+  VulnerabilityId: ID! @primaryKey
+  Installed: Int!
+  Critical: Int!
+  High: Int!
+  Medium: Int!
+  Low: Int!
+  Unknown: Int!
+}

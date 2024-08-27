@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10..0,100..900&display=swap');
 @import '@aws-amplify/ui/dist/styles.css';
+@import "bootstrap/dist/css/bootstrap.min.css";
 /** These fonts are added in only temporarily until Angular has it's own theming system */
 
 @tailwind base;
@@ -33,13 +34,18 @@ html {
   }
 
   .amplify-button--primary {
-    background: var(--amplify-colors-black);
+    background: var(--amplify-colors-blue-40);
+    border-radius: 9999px
   }
 .amplify-button--primary:hover {
   background: linear-gradient(
     to right,
-    var(--amplify-colors-neutral-60),
-    var(--amplify-colors-neutral-20)
+    var(--amplify-colors-blue-90),
+    var(--amplify-colors-blue-20)
   );
     
+}
+.amplify-input:focus {
+  border-color: var(--amplify-colors-blue-40);
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }

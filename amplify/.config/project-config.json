@@ -1,5 +1,8 @@
 {
-  "projectName": "finchainwebapp",
+  "providers": [
+    "awscloudformation"
+  ],
+  "projectName": "SupchainSecure",
   "version": "3.1",
   "frontend": "javascript",
   "javascript": {
@@ -10,8 +13,5 @@
       "BuildCommand": "npm.cmd run-script build",
       "StartCommand": "ng serve"
     }
-  },
-  "providers": [
-    "awscloudformation"
-  ]
+  }
 }

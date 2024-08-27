@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "softcheckgraphapiapi001yo",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authsupchainsecure9ec57cd2",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
