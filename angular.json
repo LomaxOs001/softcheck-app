@@ -46,8 +46,6 @@
               "@aws-crypto/crc32c",
               "@aws-crypto/crc32",
               "fast-xml-parser"
-
-
             ]
           },
           "configurations": {
