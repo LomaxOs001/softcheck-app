@@ -48,9 +48,9 @@ class CRUDOperations {
         try {
             const result = await client.graphql({query: queries.customListProducts, variables: {ProductId: productId}});
             
-            console.log("GraphQl Query result by Product Id:",result.data.listProducts.items.map(product => JSON.stringify(product)));
+            //console.log("GraphQl Query result by Product Id:",result.data.listProducts.items.map(product => JSON.stringify(product)));
 
-            return result.data.listProducts.items.map((product: any) => ({
+            return result.data.listProducts.items.map(product => ({
                 name: product.Name,
                 description: product.Description,
                 date: product.createdAt,
@@ -69,7 +69,7 @@ class CRUDOperations {
             const result = await client.graphql({query: queries.customListProducts});
             console.log("GraphQl Query result:",result.data.listProducts.items.map(product => JSON.stringify(product)));
 
-            return result.data.listProducts.items.map((product: any) => ({
+            return result.data.listProducts.items.map(product => ({
                 name: product.Name,
                 description: product.Description,
                 date: product.createdAt,
