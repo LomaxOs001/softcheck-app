@@ -165,6 +165,8 @@ def generate_bill_of_material(data):
 
                 logger.error(f"Error - Unexpected error occurred during SBOM generation: {str(e)}")
 
+#Based on the limitations when scanning software vulnerability states using filesystems, grype results are printed out instead of returning them so that they can be stored to Vulnerability table.
+#The integration of AWS ECS as a fully managed container orchestration service will be feasible approach to tacle these limitations
 def scan_bill_of_material():
 
         print("----------Process of scanning SBOM------------")
@@ -185,7 +187,7 @@ def scan_bill_of_material():
 
                 print(f"Successfully analysed the product SBOM")
 
-                return result
+                #return result
 
         except subprocess.CalledProcessError as e:
 
@@ -240,7 +242,7 @@ def fetch_product_index_item_from_ddb(productKey_):
                 logger.error(f"Error occurred when fetching product item from DDB: {str(e)}")
 
         return response
-
+#To test out the platform, instead of retrieving Vulnerability states from scan_bill_of_material(),  random values are generated. 
 def create_vulnerability_item_in_ddb(vulnId):
 
         print("-------Process of creating db items---------")
