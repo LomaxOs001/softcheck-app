@@ -10,7 +10,7 @@ import { ProductService } from '../../services/productServices';
 import { ProductDocuments} from '../../models/productDocuments';
 import { VulnerabilityDocuments } from '../../models/vulnerabilityDocuments';
 import { SeverityComponent } from '../severity/severity.component';
-import { RootComponent } from '../root/root.component';
+import { UserServices } from '../../services/userServices';
 
 Amplify.configure(awsconfig);
 @Component({
@@ -26,21 +26,21 @@ export class ProducersComponent implements OnInit {
   productDocs: ProductDocuments[] = [];
   productVulnerabilityState: VulnerabilityDocuments[] = [];
 
-  constructor(public productService: ProductService, private authService: AuthenticatorService, private rootComponent: RootComponent) {}
+  constructor(public productService: ProductService, private authService: AuthenticatorService, private userService: UserServices) {}
 
   ngOnInit() {
 
     this.checkGroupTypes();
 
+    //pass new product documents
     this.productService.observeFetchedProductDocuments.subscribe(data => {
       this.productDocs = data;
     });
 
   }
-
-  //fetch product items of a producer user
+  //ensure it's producer group prior to fetching data
   async checkGroupTypes() {
-    const groups = await this.rootComponent.getGroups();
+    const groups = await this.userService.getGroups();
     let id = '';
   
     if (groups.includes("producers")) {
@@ -52,7 +52,7 @@ export class ProducersComponent implements OnInit {
       return;
     }
   }
-  //fetch a product's vulnerability state 
+  //fetch to return product's vulnerability state 
   fetchSeverityDetails(stateId: string) {
     this.productService.fetchVulnerabilityDocumentService(stateId);
   }
@@ -65,3 +65,4 @@ export class ProducersComponent implements OnInit {
   }
 
 }
+
