@@ -6,6 +6,7 @@ import { fetchAuthSession} from 'aws-amplify/auth';
 })
 
 class UserServices {
+  //Return Amazon Cognito group belonging to current authenticated user
     async getGroups(): Promise<string[]> {
         try {
           const session = await fetchAuthSession();
