@@ -46,7 +46,7 @@ class RootComponent implements OnInit {
     try {
       const session = await fetchAuthSession();
       const groups = session.tokens?.accessToken?.payload["cognito:groups"] as string[];
-      console.log("cognito groups: ", groups);
+      //console.log("cognito groups: ", groups);
       return groups || [];
     } catch (error) {
       console.error("Error fetching groups: ", error);
@@ -65,16 +65,14 @@ class RootComponent implements OnInit {
       const result = await this.crud.fetchProductItemsById(id); //fetch to return producers' data via GraphQL query
       this.productService.updateProductDocumentService(result);
 
-      console.log("Producer group type", result);
-
     } else if (groups.includes("consumers")) {
       
       const result = await this.crud.fetchProductItems(); //fetch to return consumers' data via GraphQL query
       this.productService.updateProductDocumentService(result);
-
-      console.log("Consumer group type", result);      
+      
     } else {
-      console.log("No user group type specified");
+      alert("Product items not found - wrong user group type!");
+      return;
     }
   }
   
