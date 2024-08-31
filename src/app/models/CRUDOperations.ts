@@ -18,6 +18,7 @@ class CRUDOperations {
 
 //CRUD operations:
 
+  //Create new product items for Producer users
     async createProductItemInDDB(productId: string, aProduct: ProductType, productPathInBucket: string): Promise<string> {
 
         try {
@@ -36,19 +37,16 @@ class CRUDOperations {
             });
             return "Product " + result.data.createProduct.Name + " is created successfully!";
         }catch (error) {
-            console.error("Error creating product", error);
-            throw new Error("Error creating product item in CRUD operations!");
+            //console.error("Error creating product", error);
+            throw new Error("Error creating product items!");
         }
     }
 
 
-
-    //list item collection for Producers group
+    //list item collection for Producer users
     async fetchProductItemsById(productId: string): Promise<ProductDocuments[]> {
         try {
             const result = await client.graphql({query: queries.customListProducts, variables: {ProductId: productId}});
-            
-            //console.log("GraphQl Query result by Product Id:",result.data.listProducts.items.map(product => JSON.stringify(product)));
 
             return result.data.listProducts.items.map(product => ({
                 name: product.Name,
@@ -64,11 +62,11 @@ class CRUDOperations {
     }
 
 
+  //list item collection for Consumer users
     async fetchProductItems(): Promise<ProductDocuments[]> {
         try {
             const result = await client.graphql({query: queries.customListProducts});
-            console.log("GraphQl Query result:",result.data.listProducts.items.map(product => JSON.stringify(product)));
-
+          
             return result.data.listProducts.items.map(product => ({
                 name: product.Name,
                 description: product.Description,
@@ -88,7 +86,6 @@ class CRUDOperations {
         let severityList: VulnerabilityDocuments[] = [];
         try {
             const result = await client.graphql({query: queries.customeGetVulnerability, variables: {VulnerabilityId: id}});
-            console.log("Vulnerability details:",result.data.getVulnerability);
 
             if (result.data.getVulnerability) {
                 severityList.push({
@@ -102,16 +99,14 @@ class CRUDOperations {
             }
             else
                 console.error("Unable to find vulnerability information")
-
             return severityList
         }
         catch (error) {
-            console.error("Unable to find vulnerability information", error);
+            //console.error("Unable to find vulnerability information", error);
             throw new Error("Error reading product items!");
         }
     }
 
 }
-
 
 export {CRUDOperations};
